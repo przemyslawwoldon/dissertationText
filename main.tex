@@ -46,8 +46,8 @@
 \makeatother
 
 \usepackage[left=2.5cm, right=2.5cm, top=2.5cm, bottom=2cm]{geometry}
-\setlength{\parindent}{2em}
-\setlength{\parskip}{0.2em}
+\setlength{\parindent}{4em}
+\setlength{\parskip}{1pt}
 \renewcommand{\baselinestretch}{1.5}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 %?
@@ -100,50 +100,57 @@
     \tableofcontents
 	\newpage 
 
-    \setcounter{secnumdepth}{0}
-	\section{Streszczenie}
-	\section{Abstract}
-    \setcounter{secnumdepth}{1}
+    %\setcounter{secnumdepth}{0}
+	\section*{Streszczenie}
+	\addcontentsline{toc}{section}{Streszczenie}
+	\section*{Abstract}
+    \addcontentsline{toc}{section}{Abstract}    
+    %\setcounter{secnumdepth}{1}
     
 	\newpage 
 
 	\section{Wstęp}
-			\paragraph{} Obecnie coraz częściej w świątyniach możemy spotkać się z rzutnikami lub wyświetlaczami led, na których ekranizowane są teksty pieśni.
+			\paragraph{\indent} Obecnie coraz częściej w świątyniach możemy spotkać się z rzutnikami lub wyświetlaczami led, na których ekranizowane są teksty pieśni.
 				Cyfrowe zbiory pieśni dostarczane przez producentów wyświetlaczy nie są w stanie sprostać wymaganią jakie stawia przed nimi: dynamiczny rozwój muzyki - powstawaniu nowych utworów, zróżnicowanym tradycjom lokalnym oraz indywidualnym upodobaniom muzyków kościelnych wykorzystującym różne śpiewniki.
-				Czasochłonny proces budowy wspomnianych zbiorów często 
+				Czasochłonny proces budowy wspomnianych zbiorów często
 				polega na ręcznym przepisywaniu tekstów pieśni z wykorzystywanych przez muzyków kościelnych śpiewników.
 				Automatyzacja tego procesu pozwoli na łatwiejsze dopasowanie zbiorów do potrzeb muzyków kościelnych i tradycji lokalnych. 
-		
+				\par Dzięki pracy nad tą aplikacją autor mógł połączyć swoje dwie pasje --- muzykę kościelną i informatykę. Pomysł budowy aplikacji nardził się z zaobserwowania, że osoby odpowiedzialne z muzykę kościelna przeznaczają znaczącą liczbę godzin na reczne przepisywanie śpiewników, poprawę błędów w już dostarczonych zbiorach. Zaangażowanie technik informatycznych do tego zadania pozwoli nie tylko na zaoszczędzenie czasu, ale również wyeliminuje możliwość wystąpienia błędów spowodowanych przez człowieka.
+				Budowa prototypu zapewniającego pełną funkcjonalność, który może być dalej rozwijany daje możliwość jego opublikowania i dotarcia do szerokiego grona interesariuszy.  
 		\subsection{Cel pracy}
-			\paragraph{\noindent}
-				Celem niniejszej pracy dyplomowej było skonstruowanie algorytmów 
-				przetwarzających strony śpiewników kościelnych tak aby jak najlepiej przygotować je do optycznego rozpoznania zawartego w nich tekstu. Dzieki zastosowaniu konwolucyjnych sieci neuronowych wypracowane rozwiąznie zostało uogólnione, a finalne algorytmy umożliwiają pracę na różnych danych wejściowych. Zaś budowa aplikacji uwzględniająca dobre praktyki programowania umożliwia jej dalszy rozwój.
+			\paragraph{\indent}
+			 Celem niniejszej pracy dyplomowej było skonstruowanie algorytmów 
+				przetwarzających strony śpiewników kościelnych tak aby jak najlepiej przygotować je do optycznego rozpoznania zawartego w nich tekstu. 
+				W algorytmach wykorzystane zostały metody przetwarzania obrazów, które redukują szumy, usuwają obszary, które nie zawierają znaczących w analizie danych (eliminacja nadmiarowych informacji), prostują strony, wykrywają i usuwają znaki muzyczne, wykrywają znaki (cyfry, litery, znaki interpunkcyjne), zaś algorytmy cyfrowego rozpoznawania tekstu odczytują wykryte litery uwzględniając polskie znaki diakrytyczne. Dzieki zastosowaniu konwolucyjnych sieci neuronowych wypracowane rozwiąznie zostało uogólnione, a finalne algorytmy umożliwiają pracę na różnych danych wejściowych. Zaś budowa aplikacji uwzględniająca dobre praktyki programowania ułatwi jej dalszy rozwój. 
 	\newpage 
 
 	\section{Wykorzystane technologie}
+	    \paragraph{\indent} Cyfrowe przetwarzanie obrazów \textit{(ang. digital image processing)} jest dosyć młodą dziedziną nauki zajmującą się reprezentacją obrazu w pamięci komutera, jego akwizycją i przetwarzaniem. 
+        \par Obecnie można znaleźć wiele bibliotek umożliwiających pracę z obrazami, na przykład: Imagemagick, Generic Image Library, SIMD i inne. Najbardziej powszechną biblioteką jest bilbioteka OpenCv, dostarcza ona bardzo bogatą, bezkonkurencyjną funkcjonalność, przejrzystą i zawierającą podstawy matematyczne dokumentację, zaś dynamicznie rozwijająca się społeczność zgromadzona wokół biblioteki ułatwia z nią pracę szczególnie nowym użytkownikom.
+	    
 		\subsection{Biblioteka OpenCv}
-			\paragraph{\noindent} 
+			\paragraph{\indent} 
 				OpenCv jest biblioteką służącą do komputerowego przetwarzania obrazów oraz uczenia maszynowego, o otwartym kodzie źródłowym.
 		\subsubsection{Zarys historyczny}
-			\paragraph{\noindent}  Prace nad budową tej biblioteki rozpoczął jeden z        pracowników firmy Intel - Gary Rost Bradski, zainspirowany środowiskiem     akademickim, które wówczas posiadało bardzo bogatą                          infrastrukturę służącą do przetwarzania obrazów, jednak                     przeznaczoną dla użytku wewnętrznego. Studenci w obrębie jednej             jednostki akademickiej dzielili się kodem zawierającym gotowe               implementacje algorytmów, co znacząco ułatwiało prace przy własnych         projektach czy aplikacjach. 
+			\paragraph{\indent}  Prace nad budową tej biblioteki rozpoczął jeden z        pracowników firmy Intel - Gary Rost Bradski, zainspirowany środowiskiem     akademickim, które wówczas posiadało bardzo bogatą                          infrastrukturę służącą do przetwarzania obrazów, jednak                     przeznaczoną dla użytku wewnętrznego. Studenci w obrębie jednej             jednostki akademickiej dzielili się kodem zawierającym gotowe               implementacje algorytmów, co znacząco ułatwiało prace przy własnych         projektach czy aplikacjach. 
 				Stąd głównym celem biblioteki OpenCv jest udostępnienie wszystkim zainteresowanym zagadnieniami przetwarzania obrazów i sztucznej inteligencji gotowej jednolitej, darmowej infrastruktury pozwalającej na pracę, tak aby nie trzeba było ponownie ''wynajdywać koła''.\par
 				OpenCv zostało przedstawione po raz pierwszy w 1999 roku szerszemu gronu odbiorców. \par  
-                \textbf{Wersja 1.0.} W wersji 1.0 kod biblioteki stanowiły wyłącznie najbardziej użyteczne przy przetwarzaniu obrazów
+                 W wersji 1.0 kod biblioteki stanowiły wyłącznie najbardziej użyteczne przy przetwarzaniu obrazów
 				algorytmy zaimplementowane w języku C. 
 				Od tego czasu biblioteka znacząco się zmieniła. \par
-			    \textbf{Wersja 2.0.}	W wersji 2.0 znaczący wpływ na wydanie wywarły trendy obecne w prowadzeniu projektów, w których wytwarza się oprogramowanie - repozytorium kodu w systemie kontroli wersji Git, gdzie możemy znaleźć najnowszą wersję biblioteki i najświeższe poprawki, testy jednostkowe czy booty ciągłej kompilacji. 
+			    W wersji 2.0 znaczący wpływ na wydanie wywarły trendy obecne w prowadzeniu projektów, w których wytwarza się oprogramowanie - repozytorium kodu w systemie kontroli wersji Git, gdzie możemy znaleźć najnowszą wersję biblioteki i najświeższe poprawki, testy jednostkowe czy booty ciągłej kompilacji. 
 				Zaimplementowano również interfejsy dla języków programowania takich jak C++ oraz Javy, Python’a, MATLAB-a.
 				Od tego czasu nowe typy danych i funkcje metody implementowano w C++, a już napisane w języku C dopasowano do nowej technologii. \par
-				\textbf{Wersja 3.0.} Nieustannie zwiększająca się liczba zaimplementowanych algorytmów użytecznych przy przetwarzaniu obrazów przyczyniła się do modułowej budowy biblioteki w wersji 3.0, która przedstawia się w sposób następujący:
+				Nieustannie zwiększająca się liczba zaimplementowanych algorytmów użytecznych przy przetwarzaniu obrazów przyczyniła się do modułowej budowy biblioteki w wersji 3.0, która przedstawia się w sposób następujący:
                 
                 \begin{spacing}{1}
-    				\begin{enumerate}
-    					\item (Warstwa wierzchnia) system operacyjny,
+    				\begin{itemize}
+    					\item (warstwa wierzchnia) system operacyjny,
     					\item interfejsy dla różnych języków i aplikacje,
     					\item moduł \textit {opencv\_contrib} zawierający kod napisany i dołączony do biblioteki przez użytkowników,
     					\item rdzeń OpenCv,
     					\item optymalizacje sprzętowe (warstwa HAL \textit {ang. hardware acceleration layer}).
-    				\end{enumerate} 
+    				\end{itemize} 
                 \end{spacing}
             
 				\begin{figure}[!ht]  
@@ -168,16 +175,16 @@
 
 
 		\subsubsection{Popularność projektu}  
-			\paragraph{\noindent}
+			\paragraph{\indent}
 				Projekt cieszy się bardzo dużym powodzeniem, które nieustannie rośnie. Świadczy o tym liczba pobrań 
 				wynosząca około 14 milionów razy, zaś miesięcznie około 200 tysięcy.
 				Obecnie biblioteka zawiera ponad 2500 zoptymalizowanych algorytmów, które służą do przetwarzania obrazów
 				również w czasie rzeczywistym i uczenia maszynowego, co znacząco ułatwia tworzenie aplikacji użytkownikom. 
 				Programiści piszący kod uwzględniali wymóg przenośności OpenCv, a więc możliwości kompilacji na każdym odpowiednim kompilatorze języka C++, co wymusiło restrykcyjną zgodność ze standardem i ułatwiło obsługę różnych platform.
-				Biblioteka dostępna jest na systemach operacyjnych takich jak: Windows, Linux, Mac OS X, do których dołączyły systemy operacyjne platforma mobilnych (Android i IOS), co znacząco przyczyniło się do zwiększenia liczby użytkowników
+				Biblioteka dostępna jest na systemach operacyjnych takich jak: Windows, Linux, Mac OS X, do których dołączyły systemy operacyjne platforma mobilnych (Android i iOS), co znacząco przyczyniło się do zwiększenia liczby użytkowników
 
 		\subsubsection{Zastosowania biblioteki OpenCv}
-			\paragraph{\noindent} 
+			\paragraph{\indent} 
 			    Dynamiczny rozwój technologiczny otwiera przed biblioteką nowy horyzont użyteczności. OpenCv znajduje zastosowanie w wielu obszarach życia do tego stopnia że wykorzystanie projektu wydaje się rzeczą całkowicie naturalna a wręcz niezauważalną. Biblioteka wykorzystywana jest w:
 			
 			    \begin{spacing}{1}
@@ -195,10 +202,10 @@
                 \end{spacing}
     
     \subsection{Konwolucyjne sieci neuronowe}
-        \paragraph{\noindent} Działanie sztucznych sieci neuronowych                        (\textit{Artificial neural network (ANN)}) opiera się na modelu pojedynczego     neuronu( perceptronu), które zostają łączone w wieksze struktury.
-            Matematyczną podstawę dla działania konwolucyjnych sieci neuronowych (\textit{Convolutional neural networks (CNN)}) stanowi splot( konwolucja) - 
-            jest to operacja określana na dwóch funkcjach( np. f(t),g(t)) w wyniku której otrzymujemy nową funkcję( np. h(t)); 
-            W przetwarzaniu obrazów jedną z funkcji jest analizowany obraz wejściowy,
+        \paragraph{\indent} Działanie sztucznych sieci neuronowych                        (\textit{Artificial neural network (ANN)}) opiera się na modelu pojedynczego     neuronu( perceptronu), które zostają łączone w większe struktury.
+            Matematyczną podstawę dla działania konwolucyjnych sieci neuronowych (\textit{Convolutional neural networks (CNN)}) stanowi splot (konwolucja) - 
+            jest to operacja określana na dwóch funkcjach (np. f(t), g(t)) w wyniku której otrzymujemy nową funkcję (np. h(t)); 
+            w przetwarzaniu obrazów jedną z funkcji jest analizowany obraz wejściowy,
             zaś druga filtr.
             Obraz wejściowy przechodzi przez wiele filtrów i każdy z nich mapuje cały obraz wejściowy biorac pod uwage jego części o rozmiarze filtra. Tak wiec konwolucyjne sieci neuronowe uczą się obrazu, analizując go pewnymi wycinkami. Dokładnie filtr przechodzący przez obraz mnoży odpowiednie wartości a następnie sumuje ich iloczyny.
         
@@ -231,9 +238,9 @@
                         {Przykład działania konwolucji \\  Źródło: \href{https://skymind.ai//wiki//convolutional-network}{\url{https://skymind.ai//wiki//convolutional-network}}, data dostępu: 09.07.2018}
             \end{figure}
         
-        Następnie dane wejściowe przechodzą przez nieliniową transformację( funkcję aktywacji), która określa czy perceptron będzie aktywowany czy nie. Funkcja ta odgrywa znacząca rolę w dopasowaniu gradientów. Funkcje te są ciągłe i różniczkowalne( wyjątek stanowi funkcja ReLU(0) ).
+        Następnie dane wejściowe przechodzą przez nieliniową transformację (funkcję aktywacji), która określa czy perceptron będzie aktywowany czy nie. Funkcja ta odgrywa znacząca rolę w dopasowaniu gradientów. Funkcje te są ciągłe i różniczkowalne (wyjątek stanowi funkcja ReLU w zerze).
         
-        Wśród funkcji aktywacji wyróżniamy funkcje takie jak: funkcja sigmoidalna,  tangens hiperboliczny (\textit{tanh}), rektyfikowana jednostka liniowa (\textit{The Rectified Linear Unit (ReLU)}), 
+        Wśród funkcji aktywacji wyróżniamy funkcje takie jak: funkcja sigmoidalna,  tangens hiperboliczny (\textit{tanh}), rektyfikowana jednostka liniowa (\textit{ang. The Rectified Linear Unit (ReLU)}), 
         które mapują wartość wejsciową w zakresach odpowiednio (0, 1), (-1, 1) i (0, x). Funkcja softmax przetwarza wektor wejściowy na wektor wyjściowy według nastepującego wzoru będącego rozkładem prawdopodobieństwa, mówiącego o prawdopodobieństwie wystąpienia poszczególnej klasy. 
         
         \begin{displaymath}
@@ -242,15 +249,16 @@
 
         Suma wartości wektora wyjściowego wynosi jeden. Wektor wejsciowy oraz wyjściowy mają taki sam rozmiar. Funkcja normalizuje K wymiarowy wektor w K wymiarowy wektor  $ \sigma (z)$. 
         
-        \par \textbf{Dropout} 
+        \par 
         Efektywną drogą regularyzacji sieci neuronowych zapobiegającą zjawisku przeuczenia się sieci jest dropout. 
         Podczas treningu sieci zostają wykluczone, dezaktywowane nadmiarowe neurony z architektury sieci w sposób losowy, w efekcie może on uwzględniać np. neurony o najmniejszych wagach, które nie mają wiekszego wpływu na ostateczny wynik działania sieci. Tak odrzucone neurony nie biorą już udziału w końcowym procesie wnioskowania. Obok dropout'u istnieją takie metody zapobiegające przeuczeniu się sieci jak: legularyzacja l1 i l2, zmanejszające wartość absolutną, pierwiastek kwadratowy wag, uznając ze modele mające zminimalizowane wagi osiągają lepsze wyniki. Legularyzacja, a w szczególności dropout pozytywnie wpływa na minimalizację błędu klasyfikacji sieci neuronowej. 
         
-	    \par \textbf{Wsteczna propagacja błędów}
-        algorytm ten jest powszechnie stosowany w optymalizacji sieci neuronowych. Wagi poszczególnych połączeń mogą zostać wytrenowane, a więc dobrane automatycznie i stanowiące w przybliżeniu zestaw najbardziej optymalny. Wsteczna propagacja błędów polega na aktualizowaniu wartości wag na podstawie wartości błedu wag dotychczasowych.
+	    Wsteczna propagacja błędów \textit{(ang. backpropagation)} jest
+        algorytmem powszechnie stosowany w optymalizacji sieci neuronowych (wielowarstwowych). Wagi poszczególnych połączeń mogą zostać wytrenowane, a więc dobrane automatycznie i stanowiące w przybliżeniu zestaw najbardziej optymalny. Wsteczna propagacja błędów polega na aktualizowaniu wartości wag na podstawie wartości błędu wag dotychczasowych. W celu poprawy efektywności wstecznej propagacji błędów często zaleca się następujące metody: 
+        zastosowanie losowych wag początkowych, kilkukrotne powtarzanie procesu uczenia. Sam algorytm uwzględnia następujące kroki zakładając losową generację wag początkowych: obliczenie odpowiedź sieci dla każdego z wektorów uczących, każdy z neuronów wyjściowy oblicza swój błąd, propagacja błędów do warstw wcześniejszych, na podstawie propagowanej wartości błędu każdy z neuronów modyfikuje wagi, powyższe kroki są powtarzane dopóki średni błąd nie przestanie maleć.
 
-	    \par \textbf{Max pooling}
-	     jest zjawiskiem ubocznym przy zastosowaniu konwolucyjnych sieci neuronowych konwolucyjnych. Polega on na zmniejszeniu wymiarowości przetwarzanego obrazu, może być wykonane na każdym z kanałów obrazu oraz może być wykonany z różnym krokiem, w następujący sposób: 
+	    \par Zjawiskiem występującym przy zastosowaniu konwolucyjnych sieci neuronowych konwolucyjnych jest pooling.
+	    Polega on na zmniejszeniu wymiarowości przetwarzanego obrazu. Zaletą zastosowania poolingu jest wyeksponowanie znaczących informacji, które zawiera obraz. Można wyróżnić average pooling i max pooling, mogą one wykonane na każdym z kanałów obrazu z różnym rozmiarem jądra oraz różnym krokiem. 
 	 
 	    \begin{figure}[!ht]
             \centering
@@ -262,10 +270,20 @@
 
         \newpage
         
-        Pooling jest również metodą regularyzacji sieci neuronowej, zapobiegający jej przeuczeniu.
+        Pooling jest również metodą regularyzacji sieci neuronowej, zapobiegający jej przeuczeniu. 
         
-        Do budowy konwolucyjnych sieci neuronowych został wykorzystany framework Deeplearning4j( jezyk programowania Java) udostępniający zaimplementowane mechanizmy budowy, regularyzacji, optymalizacji sieci neuronowych. 
-    
+        \par Do budowy konwolucyjnych sieci neuronowych został wykorzystany framework Deeplearning4j. Działa na wirtualnej maszynie Javy. Można go wykorzystywać z językiem programowania Java (DL4J) i Scala (DL4S). Narzędzie posiada bogatą dokumentacje, repozytorium kodu na platformie GitHub gdzie znajdują się zaimplementowane gotowe przykłady użycia frameworku \href{https://github.com//deeplearning4j//nd4j}{\url{https://github.com//deeplearning4j//nd4j}}. Umożliwia konfigurację środowiska za pośrednictwem narzędzi automatyzujących budowę projektu, na przykład: Maven, Gradle, Ivy, SBT. Do operacji backendowych narzędzie umozliwia wybór pomiędzy GPU, a CPU. Framework 
+        udostępnia zaimplementowane mechanizmy budowy, regularyzacji, optymalizacji sieci neuronowych, różnorodne rodzaje warstw, główne grupy: Feed-Forward Layers, Output Layers, Convolutional Layers, Recurrent Layers,  Unsupervised Layers, Other Layers, Graph Vertices, InputPreProcessors. W pracy wykorzystywane są następujące z udostępnionych warstw: 
+        \begin{itemize}
+            \item Convolutional Layers,
+            \item SubsamplingLayer,
+            \item DenseLayer,
+            \item OutputLayer,
+        \end{itemize}
+        \par Narzędzie wspiera następujące parametry konfiguracji sieci lub poszczególnych warstw: funkcja aktywacji, inicjacja wag początkowych, aktualizacje kroku uczenia, regularyzację. 
+        \par Wszystkie dostępne warstwy i parametry konfiguracji sieci dostępne są na stronie projektu:
+        \href{https://deeplearning4j.org//quickref\#config}{\url{https://deeplearning4j.org//quickref\#config}}.
+        
 	\subsection{Tesseract OCR}
 	    \paragraph{} Tesseract jest systemem służącym do optycznego rozpoznawania znaków( OCR od \textit{ang. optical character recognition}). Mimo że system zstał napisany w języku C dostępne są interfejsy umożliwiające korzystanie z narzędzia, z poziomu innych języków. Tesseract umożliwia wybór pakietu jezykowego uwzględniającego zanki diakrytyczne wśród około 130 możliwych. Umożliwia on rozpoznawanie znaków, wyrazów, zdań z plików z rozszerzeniem TIFF, JPEG, GIF, PNG, BMP, wielostronicowych plikow TIFF i dokumentów PDF.
    
