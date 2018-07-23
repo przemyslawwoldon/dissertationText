@@ -115,7 +115,7 @@
 				Czasochłonny proces budowy wspomnianych zbiorów często
 				polega na ręcznym przepisywaniu tekstów pieśni z wykorzystywanych przez muzyków kościelnych śpiewników.
 				Automatyzacja tego procesu pozwoli na łatwiejsze dopasowanie zbiorów do potrzeb muzyków kościelnych i tradycji lokalnych. 
-				\par Dzięki pracy nad tą aplikacją autor mógł połączyć swoje dwie pasje --- muzykę kościelną i informatykę. Pomysł budowy aplikacji nardził się z zaobserwowania, że osoby odpowiedzialne z muzykę kościelna przeznaczają znaczącą liczbę godzin na reczne przepisywanie śpiewników, poprawę błędów w już dostarczonych zbiorach. Zaangażowanie technik informatycznych do tego zadania pozwoli nie tylko na zaoszczędzenie czasu, ale również wyeliminuje możliwość wystąpienia błędów spowodowanych przez człowieka.
+				\par Dzięki pracy nad tą aplikacją autor mógł połączyć swoje dwie pasje --- muzykę kościelną i informatykę. Pomysł budowy aplikacji narodził się z zaobserwowania, że osoby odpowiedzialne za muzykę kościelna przeznaczają znaczącą liczbę godzin na ręczne przepisywanie śpiewników, poprawę błędów w już dostarczonych zbiorach. Zaangażowanie technik informatycznych do tego zadania pozwoli nie tylko na zaoszczędzenie czasu, ale również wyeliminuje możliwość wystąpienia błędów spowodowanych przez człowieka.
 				Budowa prototypu zapewniającego pełną funkcjonalność, który może być dalej rozwijany daje możliwość jego opublikowania i dotarcia do szerokiego grona interesariuszy.  
 		\subsection{Cel pracy}
 			\paragraph{\indent}
@@ -129,8 +129,8 @@
         \par Obecnie można znaleźć wiele bibliotek umożliwiających pracę z obrazami, na przykład: Imagemagick, Generic Image Library, SIMD i inne. Najbardziej powszechną biblioteką jest bilbioteka OpenCv, dostarcza ona bardzo bogatą, bezkonkurencyjną funkcjonalność, przejrzystą i zawierającą podstawy matematyczne dokumentację, zaś dynamicznie rozwijająca się społeczność zgromadzona wokół biblioteki ułatwia z nią pracę szczególnie nowym użytkownikom.
 	    
 		\subsection{Biblioteka OpenCv}
-			\paragraph{\indent} 
-				OpenCv jest biblioteką służącą do komputerowego przetwarzania obrazów oraz uczenia maszynowego, o otwartym kodzie źródłowym.
+			%\paragraph{\indent} 
+			%	OpenCv jest biblioteką służącą do komputerowego przetwarzania obrazów oraz uczenia maszynowego, o otwartym kodzie źródłowym.
 		\subsubsection{Zarys historyczny}
 			\paragraph{\indent}  Prace nad budową tej biblioteki rozpoczął jeden z        pracowników firmy Intel - Gary Rost Bradski, zainspirowany środowiskiem     akademickim, które wówczas posiadało bardzo bogatą                          infrastrukturę służącą do przetwarzania obrazów, jednak                     przeznaczoną dla użytku wewnętrznego. Studenci w obrębie jednej             jednostki akademickiej dzielili się kodem zawierającym gotowe               implementacje algorytmów, co znacząco ułatwiało prace przy własnych         projektach czy aplikacjach. 
 				Stąd głównym celem biblioteki OpenCv jest udostępnienie wszystkim zainteresowanym zagadnieniami przetwarzania obrazów i sztucznej inteligencji gotowej jednolitej, darmowej infrastruktury pozwalającej na pracę, tak aby nie trzeba było ponownie ''wynajdywać koła''.\par
@@ -201,6 +201,40 @@
 		            \end{itemize}
                 \end{spacing}
     
+    	\subsubsection{Reprezentacja obrazów}
+	    \paragraph{\indent} Obrazy można podzielić w najprostszy sposób na obrazy barwne i obrazy w skali szarości. Obrazy w bibliotece OpenCv reprezentowane są w postaci macierzy (Mat). Narzędzie to udostępnia bogatą gamę możliwości reprezentacji poszczególnego piksela, a więc i samego obrazu. Tak więc jeden piksel jest reprezentowany w następujący sposób --- CV\_xCy
+	    \begin{spacing}{1}
+	    \begin{itemize}
+	        \item{x --- parametr określający typ}
+	            \begin{itemize}
+	            \item{8U --- 8---bitowy char bez znaku}
+	            \item{16S --- 16---bitowy short ze znakiem}
+	            \item{16U --- 16---bitowy short bez znakiu}
+	            \item{32S --- 32---bitowa liczba całkowita ze znakiem}
+	            \item{32F --- 32---bitowa liczba zmiennoprzecinkowa}
+	            \item{64F --- 64---bitowa liczba zmiennoprzecinkowa}
+	            \end{itemize}
+	        \item{y  --- parametr określający liczbę kanałów}
+	            \begin{itemize}
+	            \item{1 --- jeden kanał}
+	            \item{2 --- dwa kanały}
+	            \item{3 --- trzy kanały}
+	            \end{itemize}
+	    \end{itemize}
+	    \end{spacing}
+	    lub jeśli użytkownik potrzebuje więcej kanałów może użyć funkcji CV\_xC(n), gdzie n --- liczba kanałów. Można również wybierać z obfitej przestrzeni reprezentacji obrazu np. RGB, RGBA, HSV i innych. \par
+	    Obrazy przechowywane jako pliki w pamięci komputera mają różne rozszerzenia, które wpływają na ich jakość, wielkość zajmowanego miejsca na dysku. Przykładowe formaty obrazów: 
+        
+        \begin{spacing}{1}
+            \begin{itemize}
+	            \item TIFF (\textit{ang. Tagged-lmage File Format}) --- format standardowy i najbardziej podstawowy, używa algorytmu kompresji bezstratnej;
+	            \item 	JPEG (\textit{ang. Joint Photographic Experts Group}) --- używa algorytmu kompresji stratnej;
+	            \item PNG (\textit{ang. Portable Network Graphics}) --- używa algorytmu kompresji bezstratnej; 
+                \item  GIF (\textit{ang. Graphics Interchange Format}) --- używa algorytmu kompresji bezstratnej LZW (\textit{Lemple-Zif-Welch}), pliki małych rozmiarów, często wykorzystywany do tworzenia animacji;
+	        \end{itemize}
+	    \end{spacing}
+    
+    
     \subsection{Konwolucyjne sieci neuronowe}
         \paragraph{\indent} Działanie sztucznych sieci neuronowych                        (\textit{Artificial neural network (ANN)}) opiera się na modelu pojedynczego     neuronu( perceptronu), które zostają łączone w większe struktury.
             Matematyczną podstawę dla działania konwolucyjnych sieci neuronowych (\textit{Convolutional neural networks (CNN)}) stanowi splot (konwolucja) - 
@@ -251,14 +285,6 @@
 
         Suma wartości wektora wyjściowego wynosi jeden. Wektor wejsciowy oraz wyjściowy mają taki sam rozmiar. Funkcja normalizuje K wymiarowy wektor w K wymiarowy wektor  $ \sigma (z)$. 
         
-        \par 
-        Efektywną drogą regularyzacji sieci neuronowych zapobiegającą zjawisku przeuczenia się sieci jest dropout. 
-        Podczas treningu sieci zostają wykluczone, dezaktywowane nadmiarowe neurony z architektury sieci w sposób losowy, w efekcie może on uwzględniać np. neurony o najmniejszych wagach, które nie mają wiekszego wpływu na ostateczny wynik działania sieci. Tak odrzucone neurony nie biorą już udziału w końcowym procesie wnioskowania. Obok dropout'u istnieją takie metody zapobiegające przeuczeniu się sieci jak: legularyzacja l1 i l2, zmanejszające wartość absolutną, pierwiastek kwadratowy wag, uznając ze modele mające zminimalizowane wagi osiągają lepsze wyniki. Legularyzacja, a w szczególności dropout pozytywnie wpływa na minimalizację błędu klasyfikacji sieci neuronowej. 
-        
-	    Wsteczna propagacja błędów \textit{(ang. backpropagation)} jest
-        algorytmem powszechnie stosowany w optymalizacji sieci neuronowych (wielowarstwowych). Wagi poszczególnych połączeń mogą zostać wytrenowane, a więc dobrane automatycznie i stanowiące w przybliżeniu zestaw najbardziej optymalny. Wsteczna propagacja błędów polega na aktualizowaniu wartości wag na podstawie wartości błędu wag dotychczasowych. W celu poprawy efektywności wstecznej propagacji błędów często zaleca się następujące metody: 
-        zastosowanie losowych wag początkowych, kilkukrotne powtarzanie procesu uczenia. Sam algorytm uwzględnia następujące kroki zakładając losową generację wag początkowych: obliczenie odpowiedź sieci dla każdego z wektorów uczących, każdy z neuronów wyjściowy oblicza swój błąd, propagacja błędów do warstw wcześniejszych, na podstawie propagowanej wartości błędu każdy z neuronów modyfikuje wagi, powyższe kroki są powtarzane dopóki średni błąd nie przestanie maleć.
-
 	    \par Zjawiskiem występującym przy zastosowaniu konwolucyjnych sieci neuronowych konwolucyjnych jest pooling.
 	    Polega on na zmniejszeniu wymiarowości przetwarzanego obrazu. Zaletą zastosowania poolingu jest wyeksponowanie znaczących informacji, które zawiera obraz. Można wyróżnić average pooling i max pooling, mogą one wykonane na każdym z kanałów obrazu z różnym rozmiarem jądra oraz różnym krokiem. 
 	 
@@ -269,39 +295,43 @@
                 [Max pooling]
                 {Max pooling}
         \end{figure}
-
-        \newpage
         
         Pooling jest również metodą regularyzacji sieci neuronowej, zapobiegający jej przeuczeniu. 
         
-        \par Do budowy konwolucyjnych sieci neuronowych został wykorzystany framework Deeplearning4j. Działa na wirtualnej maszynie Javy. Można go wykorzystywać z językiem programowania Java (DL4J) i Scala (DL4S). Narzędzie posiada bogatą dokumentacje, repozytorium kodu na platformie GitHub gdzie znajdują się zaimplementowane gotowe przykłady użycia frameworku \href{https://github.com//deeplearning4j//nd4j}{\url{https://github.com//deeplearning4j//nd4j}}. Umożliwia konfigurację środowiska za pośrednictwem narzędzi automatyzujących budowę projektu, na przykład: Maven, Gradle, Ivy, SBT. Do operacji backendowych narzędzie umozliwia wybór pomiędzy GPU, a CPU. Framework 
-        udostępnia zaimplementowane mechanizmy budowy, regularyzacji, optymalizacji sieci neuronowych, różnorodne rodzaje warstw, główne grupy: Feed-Forward Layers, Output Layers, Convolutional Layers, Recurrent Layers,  Unsupervised Layers, Other Layers, Graph Vertices, InputPreProcessors. W pracy wykorzystywane są następujące z udostępnionych warstw: 
+        \par 
+        Inną efektywną drogą regularyzacji sieci neuronowych również zapobiegającą zjawisku przeuczenia się sieci jest dropout. 
+        Podczas treningu sieci zostają wykluczone, dezaktywowane nadmiarowe neurony z architektury sieci w sposób losowy, w efekcie może on uwzględniać np. neurony o najmniejszych wagach, które nie mają wiekszego wpływu na ostateczny wynik działania sieci. Tak odrzucone neurony nie biorą już udziału w końcowym procesie wnioskowania. Obok dropout'u istnieją takie metody zapobiegające przeuczeniu się sieci jak: legularyzacja l1 i l2, zmanejszające wartość absolutną, pierwiastek kwadratowy wag, uznając ze modele mające zminimalizowane wagi osiągają lepsze wyniki. Legularyzacja, a w szczególności dropout pozytywnie wpływa na minimalizację błędu klasyfikacji sieci neuronowej. 
+        
+	    Kolejnym algorytmem powszechnie stosowanym w celu optymalizacji sieci neuronowych (wielowarstwowych) jest algorytm wstecznej propagacji błędów \textit{(ang. backpropagation)}. Wagi poszczególnych połączeń mogą zostać wytrenowane, a więc dobrane automatycznie i stanowiące w przybliżeniu zestaw najbardziej optymalny. Wsteczna propagacja błędów polega na aktualizowaniu wartości wag na podstawie wartości błędu wag dotychczasowych. W celu poprawy efektywności wstecznej propagacji błędów często zaleca się następujące metody: 
+        zastosowanie losowych wag początkowych, kilkukrotne powtarzanie procesu uczenia. Sam algorytm uwzględnia następujące kroki zakładając losową generację wag początkowych: obliczenie odpowiedź sieci dla każdego z wektorów uczących, każdy z neuronów wyjściowy oblicza swój błąd, propagacja błędów do warstw wcześniejszych, na podstawie propagowanej wartości błędu każdy z neuronów modyfikuje wagi, powyższe kroki są powtarzane dopóki średni błąd nie przestanie maleć.
+
+        \par Do budowy konwolucyjnych sieci neuronowych został wykorzystany framework Deeplearning4j. Działa na wirtualnej maszynie Javy. Można go wykorzystywać z językiem programowania Java (DL4J) i Scala (DL4S). Narzędzie posiada bogatą dokumentacje, repozytorium kodu na platformie GitHub gdzie znajdują się zaimplementowane gotowe przykłady użycia frameworku \href{https://github.com//deeplearning4j//nd4j}{\url{https://github.com//deeplearning4j//nd4j}}. Umożliwia konfigurację środowiska za pośrednictwem narzędzi automatyzujących budowę projektu, na przykład: Maven, Gradle, Ivy, SBT. Do operacji backendowych narzędzie udostępnia wybór pomiędzy GPU, a CPU. Framework 
+        posiada zaimplementowane mechanizmy budowy, regularyzacji, optymalizacji sieci neuronowych, różnorodne rodzaje warstw z których możemy budować architekturę sieci (główne grupy) : Feed-Forward Layers, Output Layers, Convolutional Layers, Recurrent Layers,  Unsupervised Layers, Other Layers, Graph Vertices, InputPreProcessors. W pracy wykorzystywane są następujące z udostępnionych warstw wraz z konfiguracją: 
         \begin{itemize}
-            \item Convolutional Layers,
-            \item SubsamplingLayer,
-            \item DenseLayer,
-            \item OutputLayer,
+            \item ConvolutionLayer --- warstwa wykonująca konwolucję
+                \begin{itemize}
+                \item ConvolutionLayer.Builder (x, y) --- określa wielkość jądra; x --- jego szerokość w pikselach, a y --- jego wysokość w pikselach,
+                \item stride (m, n) --- określa krok z jakim jądro jest przesuwane na obrazie wejściowym; m --- przesunięcie na osi odciętych w pikselach, a n --- przesunięcie na osi odciętych w pikselach,
+                \item nOut (k) --- określa liczbę filtrów przez które przechodzi obraz;
+                \end{itemize}
+            \item SubsamplingLayer --- warstwa odpowiadająca za pooling,
+                \begin{itemize}
+                \item SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.n) --- n --- określa rodzaj poolingu z pośród: MAX, AVG, SUM, PNORM; 
+                \item kernelSize (m, n) --- określa wielkość jądra; m --- jego szerokość w pikselach, a n --- jego wysokość w pikselach,
+                \end{itemize}
+            \item DenseLayer --- warstwa standardowa biorąca pod uwagę wszystkie wyjścia z warstwy poprzedniej \textbf{nie wiem jak to lepiej opisac},
+            \item OutputLayer --- warstwa wyjściowa odpowiadająca za klasyfikację;
         \end{itemize}
-        \par Narzędzie wspiera następujące parametry konfiguracji sieci lub poszczególnych warstw: funkcja aktywacji, inicjalizacja wag początkowych, aktualizacje kroku uczenia, regularyzację. 
+        \par Narzędzie wspiera następujące parametry konfiguracji sieci lub poszczególnych warstw: funkcja aktywacji, inicjalizacja wag początkowych, aktualizacje kroku uczenia, regularyzację i inne.
+        
+        
         \par Wszystkie dostępne warstwy i parametry konfiguracji sieci dostępne są na stronie projektu:
         \href{https://deeplearning4j.org//quickref\#config}{\url{https://deeplearning4j.org//quickref\#config}}.
         
 	\subsection{Tesseract OCR}
-	    \paragraph{} Tesseract jest systemem służącym do optycznego rozpoznawania znaków( OCR od \textit{ang. optical character recognition}). Mimo że system zstał napisany w języku C dostępne są interfejsy umożliwiające korzystanie z narzędzia, z poziomu innych języków. Tesseract umożliwia wybór pakietu jezykowego uwzględniającego zanki diakrytyczne wśród około 130 możliwych. Umożliwia on rozpoznawanie znaków, wyrazów, zdań z plików z rozszerzeniem TIFF, JPEG, GIF, PNG, BMP, wielostronicowych plikow TIFF i dokumentów PDF.
-   
-	\subsection{Obrazy}
-	    \paragraph{} Obrazy możemy podzielić w najprostrzy sposób na obrazy barwne i obrazy w skali szarości. Obrazy w bibliotece OpenCv reprezentowane są w postaci macierzy( Mat). Narzędzie to udostępnia nam bogatą gamę możliwości reprezentacji poszczególnego piksela, a więc i samego obrazu. Tak więc jeden piksel jest reprezentowany w nastepujący sposób określający liczbę kanałów i typ np. CV\_<8U (8-bitowy unchar), 16S, 16U, 32S, 32F, 64F>C<1 (jeden kanał), 2, 3> lub jeśli potrzebujemy więcej kanałów uzywamy funkcji CV\_<8U, 16S, ... >C(n), gdzie n - liczba kanałów. Możemy również wybierać z bogatej przestrzeni reprezentacji obrazu np. RGB, RGBA, HSV i innych. \par
-	    Obrazy przechowywane jako pliki w pamięci komputera mają różne rozszerzenia, które wpływają na ich jakość, wieklość zajmowanego miejsca na dysku. Przykładowe formaty obrazów: 
-        
-        \begin{spacing}{1}
-            \begin{itemize}
-	            \item TIFF( \textit{Tagged-lmage File Format}) - format standardowy i najbardziej podstawowy, używa algorytmu kompresji bezstratnej;
-	            \item 	JPEG( \textit{Joint Photographic Experts Group}) --- używa algorytmu kompresji stratnej;
-	            \item PNG( \textit{Portable Network Graphics}) --- używa algorytmu kompresji bezstratnej; 
-                \item  GIF( \textit{Graphics Interchange Format}) --- używa algorytmu kompresji bezstratnej LZW( \textit{Lemple-Zif-Welch}), pliki małych rozmiarów, czesto wykorzystywany do tworzenia animacji;
-	        \end{itemize}
-	    \end{spacing}
-	    
+	    \paragraph{\indent} Tesseract jest systemem służącym do optycznego rozpoznawania znaków (OCR \textit{ang. optical character recognition}) opracowanym przez firmę HP, obecnie projekt jest sponsorowany przez Google. System został napisany w języku C. Dostępne są interfejsy umożliwiające korzystanie z narzędzia, z poziomu innych języków np. Java (wrapper Tess4J). Pierwsza wersja umożliwiała pracę z językiem angielskim, kolejne wydania powiększały listę pakietów językowych, najpierw o inne języki zachodnioeuropejskie, a później inne języki. Należy wśród nich wyróżnić japoński, chiński, i języki semickie czytane od prawej do lewej. Obecne narzędzie udostępnia wybór pakietu językowego uwzględniającego znaki diakrytyczne wśród około 130 możliwych. Oprócz obsługi różnych języków możliwa jest obsługa różnych czcionek. W początkowej wersji Tesseract pozwalał na pracę z plikami o rozszerzeniu TIFF. Kolejne wersje systemu umożliwiały pracę z bogatszą gamą plików: JPEG, GIF, PNG, BMP, wielostronicowych plików TIFF dzięki wykorzystaniu biblioteki służącej do przetwarzania obrazów --- Leptonica (wrapper Java --- Lept4J). Dzięki współpracy dodatkowych bibliotek (GPL Ghostscript lub PDFBox) możemy odczytywać tekst zawarty w plikach PDF. Dodatkową funkcjonalnością, która zasługuje na uwagę jest możliwość analizy układu strony, uzyskania informacji o położeniu rozpoznanego tekstu na stronie i formatowanie tekstu wyjściowego. Projekt dostępny jest na wielu platformach: Windows, Linux, Mac OS X. Tesseract nie udostępnia graficznego interfejsu użytkownika, a sama konfiguracja systemu i przetwarzanie danych odbywa się z poziomu konsoli, powstały jednak systemy wykorzystujące tesseracta i posiadające GUI. Oprogramowanie w pewnych okolicznościach jest wrażliwe na błędy, należy unikać rozmiaru tekstu mniejszego niż 20px, pochylonego lub obróconego, niepozytywnie na działanie wpływają również ciemne granice strony ponieważ mogą one zostać rozpoznane i dopasowane jako znaki.
+	    \par Silnik tesseracta uznawany jest za jeden z najlepiej działających wśród dostępnych systemów OCR. 
+
 	\subsection{Środowisko programistyczne}
 		\paragraph{} Projekt powstał w technologii Java. Utrzymująca się popularność tej technoligii na pierwszym miejscu( która wciąż rośnie) wśród języków programowania ułatwi dalszy rozwój i wsparcie aplikacji.  \par
         W wersji 8, wprowadzone zostały znaczące kamienie milowe takie jak: wyrażenia lambda oraz strumienie. Zostały one wykorzystane w kodzie źródłowym aplikacji, przez co znacząco przyśpieszyły działanie, wykonywanie poszczególnych metod i podniosły czytelność, zwięzłość kodu. \par
