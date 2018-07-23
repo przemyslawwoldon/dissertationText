@@ -100,7 +100,7 @@
 	\section{Wstęp}
 		\paragraph{\indent} Obecnie coraz częściej w świątyniach możemy spotkać się z rzutnikami lub wyświetlaczami led, 
 			na których ekranizowane są teksty pieśni. Cyfrowe zbiory pieśni dostarczane przez producentów wyświetlaczy 
-			nie są w stanie sprostać wymaganią jakie stawia przed nimi: dynamiczny rozwój muzyki - powstawaniu nowych utworów, 
+			nie są w stanie sprostać wymaganiom jakie stawia przed nimi: dynamiczny rozwój muzyki --- powstawaniu nowych utworów, 
 			zróżnicowanym tradycjom lokalnym oraz indywidualnym upodobaniom muzyków kościelnych wykorzystującym różne śpiewniki. 
 			Czasochłonny proces budowy wspomnianych zbiorów często polega na ręcznym przepisywaniu tekstów pieśni 
 			z wykorzystywanych przez muzyków kościelnych śpiewników. Automatyzacja tego procesu pozwoli na łatwiejsze dopasowanie zbiorów 
@@ -133,12 +133,12 @@
 			%\paragraph{\indent} 
 			%	OpenCv jest biblioteką służącą do komputerowego przetwarzania obrazów oraz uczenia maszynowego, o otwartym kodzie źródłowym.
 		\subsubsection{Zarys historyczny}
-			\paragraph{\indent} Prace nad budową tej biblioteki rozpoczął jeden z pracowników firmy Intel - Gary Rost Bradski, 
+			\paragraph{\indent} Prace nad budową tej biblioteki rozpoczął jeden z pracowników firmy Intel --- Gary Rost Bradski, 
 				zainspirowany środowiskiem akademickim, które wówczas posiadało bardzo bogatą infrastrukturę służącą do przetwarzania obrazów, 
 				jednak przeznaczoną dla użytku wewnętrznego. Studenci w obrębie jednej jednostki akademickiej dzielili się kodem zawierającym gotowe 
 				implementacje algorytmów, co znacząco ułatwiało prace przy własnych projektach czy aplikacjach. Stąd głównym celem biblioteki OpenCv 
 				jest udostępnienie wszystkim zainteresowanym zagadnieniami przetwarzania obrazów i sztucznej inteligencji gotowej jednolitej, 
-				darmowej infrastruktury pozwalającej na pracę, tak aby nie trzeba było ponownie ''wynajdywać koła''.
+				darmowej infrastruktury pozwalającej na pracę, tak aby nie trzeba było ponownie "wynajdywać koła".
 			\par OpenCv zostało przedstawione po raz pierwszy w 1999 roku szerszemu gronu odbiorców. 
 			\par W wersji 1.0 kod biblioteki stanowiły wyłącznie najbardziej użyteczne przy przetwarzaniu obrazów algorytmy zaimplementowane w języku C. 
 				Od tego czasu biblioteka znacząco się zmieniła. 
@@ -168,7 +168,7 @@
 					    {Budowa modułowa OpenCv}
 				\end{figure}
 
-				\par OpenCv w tej wersji wspiera budowanie i dołączanie do biblioteki walsnych modulów.
+				\par OpenCv w tej wersji wspiera budowanie i dołączanie do biblioteki własnych modułów.
 	            
 				\begin{figure}[!ht]   
 					\begin{center}
@@ -239,19 +239,18 @@
 			
 				\begin{spacing}{1}
 					\begin{itemize}
-						\item TIFF (\textit{ang. Tagged-lmage File Format}) --- format standardowy i najbardziej podstawowy, używa algorytmu kompresji bezstratnej;
-						\item JPEG (\textit{ang. Joint Photographic Experts Group}) --- używa algorytmu kompresji stratnej;
-						\item PNG (\textit{ang. Portable Network Graphics}) --- używa algorytmu kompresji bezstratnej; 
-						\item GIF (\textit{ang. Graphics Interchange Format}) --- używa algorytmu kompresji bezstratnej LZW (\textit{Lemple-Zif-Welch}), 
+						\item TIFF \textit{(ang. Tagged-lmage File Format)} --- format standardowy i najbardziej podstawowy, używa algorytmu kompresji bezstratnej;
+						\item JPEG \textit{(ang. Joint Photographic Experts Group)} --- używa algorytmu kompresji stratnej;
+						\item PNG \textit{(ang. Portable Network Graphics)} --- używa algorytmu kompresji bezstratnej; 
+						\item GIF \textit{(ang. Graphics Interchange Format)} --- używa algorytmu kompresji bezstratnej LZW \textit{(Lemple-Zif-Welch)}, 
 							pliki małych rozmiarów, często wykorzystywany do tworzenia animacji;
 					\end{itemize}
 				\end{spacing}
-		
     
     \subsection{Konwolucyjne sieci neuronowe}
-        \paragraph{\indent} Działanie sztucznych sieci neuronowych (\textit{Artificial neural network (ANN)}) opiera się na modelu pojedynczego     
-			neuronu( perceptronu), które zostają łączone w większe struktury. Matematyczną podstawę dla działania konwolucyjnych sieci neuronowych 
-			(\textit{Convolutional neural networks (CNN)}) stanowi splot (konwolucja) --- jest to operacja określana na dwóch funkcjach (np. f(t), g(t)) 
+        \paragraph{\indent} Działanie sztucznych sieci neuronowych \textit{(Artificial neural network (ANN))} opiera się na modelu pojedynczego     
+			neuronu (perceptronu), które zostają łączone w większe struktury. Matematyczną podstawę dla działania konwolucyjnych sieci neuronowych 
+			\textit{(Convolutional neural networks (CNN))} stanowi splot (konwolucja) --- jest to operacja określana na dwóch funkcjach (np. f(t), g(t)) 
 			w wyniku której otrzymujemy nową funkcję (np. h(t)); w przetwarzaniu obrazów jedną z funkcji jest analizowany obraz wejściowy, zaś druga filtr.
             Obraz wejściowy przechodzi przez wiele filtrów i każdy z nich mapuje cały obraz wejściowy biorac pod uwage jego części o rozmiarze filtra. 
 			Tak wiec konwolucyjne sieci neuronowe uczą się obrazu, analizując go pewnymi wycinkami. Dokładnie filtr przechodzący przez obraz 
@@ -291,8 +290,8 @@
 			Następnie dane wejściowe przechodzą przez nieliniową transformację (funkcję aktywacji), która określa czy perceptron będzie aktywowany czy nie. 
 			Funkcja ta odgrywa znacząca rolę w dopasowaniu gradientów. Funkcje te są ciągłe i różniczkowalne (wyjątek stanowi funkcja ReLU w zerze).
         
-			Wśród funkcji aktywacji wyróżniamy funkcje takie jak: funkcja sigmoidalna,  tangens hiperboliczny (\textit{tanh}), rektyfikowana jednostka liniowa 
-			(\textit{ang. The Rectified Linear Unit (ReLU)}), które mapują wartość wejsciową w zakresach odpowiednio (0, 1), (-1, 1) i (0, x). 
+			Wśród funkcji aktywacji wyróżniamy funkcje takie jak: funkcja sigmoidalna,  tangens hiperboliczny \textit{(tanh)}, rektyfikowana jednostka liniowa 
+			\textit{(ang. The Rectified Linear Unit (ReLU))}, które mapują wartość wejsciową w zakresach odpowiednio (0, 1), (-1, 1) i (0, x). 
 			Funkcja softmax przetwarza wektor wejściowy na wektor wyjściowy według nastepującego wzoru będącego rozkładem prawdopodobieństwa, 
 			mówiącego o prawdopodobieństwie wystąpienia poszczególnej klasy. 
         
@@ -303,7 +302,7 @@
 			Suma wartości wektora wyjściowego wynosi jeden. Wektor wejsciowy oraz wyjściowy mają taki sam rozmiar. Funkcja normalizuje K wymiarowy wektor w K wymiarowy wektor  
 			$ \sigma (z)$. 
         
-	    \par Zjawiskiem występującym przy zastosowaniu konwolucyjnych sieci neuronowych konwolucyjnych jest pooling. Polega on na zmniejszeniu wymiarowości 
+	    \par Zjawiskiem występującym przy zastosowaniu konwolucyjnych sieci neuronowych jest pooling. Polega on na zmniejszeniu wymiarowości 
 			przetwarzanego obrazu. Zaletą zastosowania poolingu jest wyeksponowanie znaczących informacji, które zawiera obraz. Można wyróżnić average 
 			pooling i max pooling, mogą one wykonane na każdym z kanałów obrazu z różnym rozmiarem jądra oraz różnym krokiem. 
 	 
@@ -340,7 +339,7 @@
 			\href{https://github.com//deeplearning4j//nd4j}{\url{https://github.com//deeplearning4j//nd4j}}. Umożliwia konfigurację środowiska 
 			za pośrednictwem narzędzi automatyzujących budowę projektu, na przykład: Maven, Gradle, Ivy, SBT. Do operacji backendowych narzędzie 
 			udostępnia wybór pomiędzy GPU, a CPU. Framework posiada zaimplementowane mechanizmy budowy, regularyzacji, optymalizacji sieci neuronowych, 
-			różnorodne rodzaje warstw z których możemy budować architekturę sieci (główne grupy) : Feed-Forward Layers, Output Layers, Convolutional Layers, 
+			różnorodne rodzaje warstw z których możemy budować architekturę sieci (główne grupy) : Feed---Forward Layers, Output Layers, Convolutional Layers, 
 			Recurrent Layers,  Unsupervised Layers, Other Layers, Graph Vertices, InputPreProcessors. 
 			W pracy wykorzystywane są następujące z udostępnionych warstw wraz z konfiguracją: 
 
@@ -403,7 +402,7 @@
         
 \section{Część praktyczna}
 	\subsection{Budowa aplikacji}
-		\paragraph{} Algorytmy  przetwarzające obrazy zosta\l y umieszczone w odpowiednich klasach, u\l atwiających pos\l ugiwanie się nimi. Rozwiązanie to wychodzi na przeciw podstawowym zasadą obiektowości takimi jak: modularyzacja, hermentyzacja, abstrakcja. W aplikacji możemy wyróżnić następujące kalsy:
+		\paragraph{} Algorytmy  przetwarzające obrazy zostały umieszczone w odpowiednich klasach, ułatwiających posługiwanie się nimi. Rozwiązanie to wychodzi na przeciw podstawowym zasadą obiektowości takimi jak: modularyzacja, hermentyzacja, abstrakcja. W aplikacji możemy wyróżnić następujące funkcjonalności którym odpowiadają odpowiednie klasy:
 		\begin{spacing}{1}
     		\begin{enumerate}
     			\item GetImgFromPdf --- ekstrakscja stron z pliku pdf do obrazów( jedna strona pliku pdf odpowiada jednemu obrazowi);
@@ -962,6 +961,7 @@
 	   \newpage
 	   \section{Bibliografia}
 	   \subsubsection*{Źródła książkowe:}
+	   \begin{spacing}{1.5}
 	   \begin{itemize}
 	        \item Rączkowski F., Śpiewajmy Bogu, Płock, Hejnał, 2012;
 	        \item Siedlecki J., Śpiewnik kościelny, Wyd. XL (poprawione), Kraków,
@@ -969,10 +969,11 @@
 	        \item Kaehler A., Bradski G., OpenCV 3. Komputerowe rozpoznawanie obrazu w C++ przy użyciu biblioteki OpenCV, Gliwice, Helion, 2017;
 	        \item Shanmugamani R., Deep Learning for Computer Vision, Birmingham, Packt Publishing, 2018
 	   \end{itemize}
-	   
+	   \end{spacing}
 	   
 	   \subsubsection*{Źródła internetowe:}
 	   Data dostępu 2018.07.15
+	   \begin{spacing}{1}
 	   \begin{itemize}
             \item \href{https://opencv.org}{\url{https://opencv.org}}
             \item \href{https://docs.opencv.org//3.1.0//index.html}{\url{https://docs.opencv.org//3.1.0//index.html}}
@@ -990,7 +991,7 @@
 
             \item \href{http://www.szkolazpasja.pl//rastrowa}{\url{http://www.szkolazpasja.pl//rastrowa}}
 	   \end{itemize}
-	   
+	   \end{spacing}
 	   
 	   
 	   
