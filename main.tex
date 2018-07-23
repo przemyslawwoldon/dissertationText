@@ -307,6 +307,7 @@
 
         \par Do budowy konwolucyjnych sieci neuronowych został wykorzystany framework Deeplearning4j. Działa na wirtualnej maszynie Javy. Można go wykorzystywać z językiem programowania Java (DL4J) i Scala (DL4S). Narzędzie posiada bogatą dokumentacje, repozytorium kodu na platformie GitHub gdzie znajdują się zaimplementowane gotowe przykłady użycia frameworku \href{https://github.com//deeplearning4j//nd4j}{\url{https://github.com//deeplearning4j//nd4j}}. Umożliwia konfigurację środowiska za pośrednictwem narzędzi automatyzujących budowę projektu, na przykład: Maven, Gradle, Ivy, SBT. Do operacji backendowych narzędzie udostępnia wybór pomiędzy GPU, a CPU. Framework 
         posiada zaimplementowane mechanizmy budowy, regularyzacji, optymalizacji sieci neuronowych, różnorodne rodzaje warstw z których możemy budować architekturę sieci (główne grupy) : Feed-Forward Layers, Output Layers, Convolutional Layers, Recurrent Layers,  Unsupervised Layers, Other Layers, Graph Vertices, InputPreProcessors. W pracy wykorzystywane są następujące z udostępnionych warstw wraz z konfiguracją: 
+        \begin{spacing}{1.5}
         \begin{itemize}
             \item ConvolutionLayer --- warstwa wykonująca konwolucję
                 \begin{itemize}
@@ -322,6 +323,7 @@
             \item DenseLayer --- warstwa standardowa biorąca pod uwagę wszystkie wyjścia z warstwy poprzedniej \textbf{nie wiem jak to lepiej opisac},
             \item OutputLayer --- warstwa wyjściowa odpowiadająca za klasyfikację;
         \end{itemize}
+        \end{spacing}
         \par Narzędzie wspiera następujące parametry konfiguracji sieci lub poszczególnych warstw: funkcja aktywacji, inicjalizacja wag początkowych, aktualizacje kroku uczenia, regularyzację i inne.
         
         
@@ -333,10 +335,12 @@
 	    \par Silnik tesseracta uznawany jest za jeden z najlepiej działających wśród dostępnych systemów OCR. 
 
 	\subsection{Środowisko programistyczne}
-		\paragraph{} Projekt powstał w technologii Java. Utrzymująca się popularność tej technoligii na pierwszym miejscu( która wciąż rośnie) wśród języków programowania ułatwi dalszy rozwój i wsparcie aplikacji.  \par
-        W wersji 8, wprowadzone zostały znaczące kamienie milowe takie jak: wyrażenia lambda oraz strumienie. Zostały one wykorzystane w kodzie źródłowym aplikacji, przez co znacząco przyśpieszyły działanie, wykonywanie poszczególnych metod i podniosły czytelność, zwięzłość kodu. \par
-        Wykorzystanym IDE było Eclipse do którego została dołaczona jako biblioteka użytkownika biblioteka OpenCv, do projektu zostały również dodane zależności charakterystyczne dla projektów maven, umożliwiające wykorzystanie systemu OCR Tesseract oraz dl4j frameworka ułatwiającego budowę sztucznych sieci neuronoowych. 
-
+		\paragraph{\indent} Projekt powstał w technologii Java. Utrzymująca się popularność tej technologii na pierwszym miejscu (która wciąż rośnie)\footnote{\href{https://www.tiobe.com//tiobe-index}{\url{https://www.tiobe.com//tiobe-index}}, dostęp 2018.07.22} wśród języków programowania ułatwi dalszy rozwój i wsparcie aplikacji. 
+		\par
+        W wersji 8, wprowadzone zostały znaczące kamienie milowe takie jak: wyrażenia lambda oraz strumienie. Zostały one wykorzystane w kodzie źródłowym aplikacji, przez co znacząco przyśpieszyły działanie, wykonywanie poszczególnych metod i podniosły czytelność, zwięzłość kodu. 
+        \par
+        Wykorzystanym IDE \textit{(ang. integrated development environment)} było Eclipse. Po utworzeniu projektu Maven, do pliku pom.xml dodano zależności umożliwiające wykorzystanie funkcjonalności Tesseract oraz zależności umożliwiające pracę z frameworkiem DL4J. Ponadto do projektu została dołączona biblioteka OpenCv jako biblioteka użytkownika. Wykorzystanie technologii Maven w znaczący sposób ułatwiło zarządzanie zależnościami i wykorzystanymi bibliotekami w projekcie.
+        
         \newpage
         
 \section{Część praktyczna}
