@@ -266,7 +266,7 @@
 			        \begin{itemize}
         				\item skanowaniu kodów QR,
         				\item monitoringu,
-        				\item rozpoznawaniu dzwięków i muzyki,
+        				\item rozpoznawaniu dźwięków i muzyki,
         				\item obrazowaniu medycznym,
         				\item robotyce,	
         				\item przemyśle -- produkcji masowej i kontroli jakości,
@@ -320,7 +320,7 @@
 			neuronu (perceptronu), które zostają łączone w większe struktury. Matematyczną podstawę dla działania konwolucyjnych sieci neuronowych 
 			\textit{(Convolutional neural networks (CNN))} stanowi splot (konwolucja) -- jest to operacja określana na dwóch funkcjach (np. f(t), g(t)) 
 			w wyniku której otrzymujemy nową funkcję (np. h(t)); w przetwarzaniu obrazów jedną z funkcji jest analizowany obraz wejściowy, zaś druga filtr.
-            Obraz wejściowy przechodzi przez wiele filtrów i każdy z nich mapuje cały obraz wejściowy biorac pod uwage jego części o rozmiarze filtra. 
+            Obraz wejściowy przechodzi przez wiele filtrów i każdy z nich mapuje cały obraz wejściowy biorąc pod uwagę jego części o rozmiarze filtra. 
 			Tak wiec konwolucyjne sieci neuronowe uczą się obrazu, analizując go pewnymi wycinkami. Dokładnie filtr przechodzący przez obraz 
 			mnoży odpowiednie wartości a następnie sumuje ich iloczyny.
 			
@@ -486,7 +486,7 @@
         \newpage
         
 \section{Część praktyczna}
-    \hspace{\spacingIndent} Ten rozdział pracy dyplomowej traktuje o szczegółach implementacyjnych zbudowanego systemu. Poszczególne podrozdziały opisują kolejne algorytmy przez jakie przechodzi plik pdf lub graficzny w celu uzyskania końcowego efektu -- pozyskania tekstu z obrazu. Znacząca część algorytmów została przedstawiona w postaci schematów blokowych (zawierających również fragmenty kodu napisanego w jezyu Java), odzwierciedlają one przede wszystkim przepływ sterowania i poszczególne operacje. W rozdziale tym znajdziemy również listingi, zostały one wykorzystane w miejscach gdzie wykorzystanie schematów blokowych ze względu na znaczącą liczbę operacji stałyby się nieczytelne. Wszystkie opisane algorytmy zostały scalone i zawarte w aplikacji okienkowej tak, aby użytkownik widział jedynie czy system wykonuje jakąś pracę i jej efekt końcowy.
+    \hspace{\spacingIndent} Ten rozdział pracy dyplomowej traktuje o szczegółach implementacyjnych zbudowanego systemu. Poszczególne podrozdziały opisują kolejne algorytmy przez jakie przechodzi plik pdf lub graficzny w celu uzyskania końcowego efektu -- pozyskania tekstu z obrazu. Znacząca część algorytmów została przedstawiona w postaci schematów blokowych (zawierających również fragmenty kodu napisanego w języku Java), odzwierciedlają one przede wszystkim przepływ sterowania i poszczególne operacje. W rozdziale tym znajdziemy również listingi, zostały one wykorzystane w miejscach gdzie wykorzystanie schematów blokowych ze względu na znaczącą liczbę operacji stałoby się nieczytelne. Wszystkie opisane algorytmy zostały scalone i zawarte w aplikacji okienkowej tak, aby użytkownik widział jedynie czy system wykonuje jakąś pracę i jej efekt końcowy.
     
 	\subsection{Budowa aplikacji}
 		\hspace{\spacingIndent} Algorytmy  przetwarzające obrazy zostały umieszczone w odpowiednich klasach, ułatwiających posługiwanie się nimi. Rozwiązanie to wychodzi na przeciw podstawowym zasadą obiektowości takimi jak: modularyzacja, hermentyzacja, abstrakcja. W aplikacji można wyróżnić następujące funkcjonalności i odpowiadające im klasy:
@@ -570,8 +570,8 @@
     				    \includegraphics[height=10.5cm, frame] {image//exampleImage//001_a.jpg} 
     			    \end{center}
     			    \caption
-        			    [Obraz przed zastosoawaniem algorytmu]  
-                        {Obraz przed zastosoawaniem algorytmu}  
+        			    [Obraz przed zastosowaniem algorytmu]  
+                        {Obraz przed zastosowaniem algorytmu}  
     		    \end{figure}
 		
 		        \begin{figure}[!ht]  
@@ -585,15 +585,15 @@
 		
 		\subsubsection{Eliminacja nadmiarowych (czarnych) obszarów skanu}
 			\hspace{\spacingIndent} 
-			Algorytm wykrywający i usuwający czarne obszary skanu (uzupełnienie skanu do określonego formatu np. A4) (Rysunek \ref{fig:cutBlack}) zostały  zaimplementowane w klasie CutBlackArea. Algorytm wykorzystuje do tego           wartości odchylenia standardowego w poziomych liniach obrazu (Listing \ref{lst:calcStdDev}) i wartości     dominanty (na jej podstwie obliczając początek czarnego obszaru (Listing \ref{lst:calcFirstRowStdDev})). Przy założeniu, że powierzchnie te znajdują się po lewej         stronie i na dole obrazu. Algorytm umożliwia wycięcie jednego (dolnego)     lub obu obszarów. 
+			Algorytm wykrywający i usuwający czarne obszary skanu (uzupełnienie skanu do określonego formatu np. A4) (Rysunek \ref{fig:cutBlack}) zostały  zaimplementowane w klasie CutBlackArea. Algorytm wykorzystuje do tego           wartości odchylenia standardowego w poziomych liniach obrazu (Listing \ref{lst:calcStdDev}) i wartości     dominanty (na jej podstawie obliczając początek czarnego obszaru (Listing \ref{lst:calcFirstRowStdDev})). Przy założeniu, że powierzchnie te znajdują się po lewej         stronie i na dole obrazu. Algorytm umożliwia wycięcie jednego (dolnego)     lub obu obszarów. 
 			
     			\begin{figure}[!ht]  
     			    \begin{center}
     				    \includegraphics[height=18cm] {image//algorithm//cutBlackArea.png} 
     			    \end{center}
     			    \caption
-        			[Algorytm usuwający czane obszary z obrazu]  
-    	    		{Algorytm usuwający czane obszary z obrazu}  
+        			[Algorytm usuwający czarne obszary z obrazu]  
+    	    		{Algorytm usuwający czarne obszary z obrazu}  
     	    		\label{fig:cutBlack}
     		    \end{figure}
 		    
@@ -633,7 +633,7 @@
     			wykorzystująca nowe rozwiązania wprowadzone w Javie wersji 8, a więc strumienie i wyrażenia lambda, co znacząco przyśpiesza czas obliczeń oraz przejrzystość napisanego kodu. 
     			\newline
 			
-			    \lstinputlisting[caption={Metoda obliczająca dominante odychylenia standardowego}, label={lst:mode}]{calculateModeOfStdDev.java}
+			    \lstinputlisting[caption={Metoda obliczająca dominantę odchylenia standardowego}, label={lst:mode}]{calculateModeOfStdDev.java}
 			
     		    \begin{figure}[!ht]  
     			    \begin{center}
@@ -721,9 +721,9 @@
 		        \end{center} 
 		        która jest wyprowadzona z tego punktu do początku układu współrzędnych.
 		
-		        Biblioteka OpenCv udostępnia kilka róznych implementacji transformacji liniowej Hough'a: standardową, wieloskalową, progresywno probabilistyczną.
+		        Biblioteka OpenCv udostępnia kilka różnych implementacji transformacji liniowej Hough'a: standardową, wieloskalową, progresywno probabilistyczną.
 		        W algorytmie została wykorzystana ta trzecia, dająca najlepsze efekty biorąc pod uwagę czas obliczeń i dokładność algorytmu. Dodatkowymi zaletami użycia metody:\\ \textit {Imgproc.HoughLinesP(srcImg, lines, rho, theta, threshold, minLineLength, maxLineGap);}\\
-		        są argumenty \textit{minLineLength} - minimalna długość linii, \textit{maxLineGap} - wymagany odstęp pomiedzy miedzy współniniowymi odcinkami, również macierz wynikowa \textit{lines} posiada cztery kolumny, które odpowiadają współrzędnym początku i końca lini (w następującej kolejności $ x_0, y_0, x_1, y_1 $).
+		        są argumenty \textit{minLineLength} - minimalna długość linii, \textit{maxLineGap} - wymagany odstęp pomiędzy współliniowymi odcinkami, również macierz wynikowa \textit{lines} posiada cztery kolumny, które odpowiadają współrzędnym początku i końca linii (w następującej kolejności $ x_0, y_0, x_1, y_1 $).
 		
 		\subsubsection{Zasadnicze przygotowanie obrazu do analizy}
 	        \hspace{\spacingIndent} 
@@ -750,7 +750,7 @@
 		        \newpage
 		        Algorytm wykorzystuje zasadnicze przekształcenia morfologiczne udostępnione w bibliotece OpenCv -- dylatacje i erozje, które mają szerokie zastosowanie w zagadnieniu przetwarzania obrazów. 
 		        
-		        Dylatacja jest to konwolucja obrazu i jądra, w której wszystkie piksele zostają zastąpione na lokalne maksimumm każdego z pikseli, które obejmuje jądro. Jest to operacja nieliniowa, która powoduje rozrastanie się jasnego obszaru i zazwyczaj powoduje wypełnienie zagłębień przy przyjęciu założenia, że jądro jest jądrem wypukłym i wypełnionym. 
+		        Dylatacja jest to konwolucja obrazu i jądra, w której wszystkie piksele zostają zastąpione na lokalne maksimum każdego z pikseli, które obejmuje jądro. Jest to operacja nieliniowa, która powoduje rozrastanie się jasnego obszaru i zazwyczaj powoduje wypełnienie zagłębień przy przyjęciu założenia, że jądro jest jądrem wypukłym i wypełnionym. 
 		        
     		    Erozja jest to operacja przeciwna do operacji dylatacji, a więc piksele zostają zastąpione na lokalne minimum, jest to również operacja nieliniowa, która powoduje zmniejszenie się czarnego obszaru oraz usuwa wypukłości, przy tych samych założeniach.
 		    
@@ -791,7 +791,7 @@
                     \item BORDER\_REFLECT\_101 -- dodaje piksele przez lustrzane odbicie przy tym nie duplikując pikseli tworzących krawędź,
                     \item BORDER\_DEFAULT -- jest to alias dla  BORDER\_REFLECT\_101,
                     \end{itemize}
-                    \item \textit{borderValue} -- paramentr wżywany w przypadku stałej granicy, wartością domyślną jest zero.  
+                    \item \textit{borderValue} -- parametr używany w przypadku stałej granicy, wartością domyślną jest zero.  
         		 \end{itemize}
         		 \end{spacing}
         		 
@@ -970,7 +970,7 @@
         			    \label{fig:stdDevLineTex}
 		        \end{figure}
 		    
-		    Na podstawie wykresu (Rysunek \ref{fig:stdDevLineTex})można zauważyć ze tekst znajduje się pomiędzy dwoma większymi obszarami o wartościach zerowych, dokładniej pomiędzy liniami od około 240 do około 270, odchylenie standardowe wierszy zawierających tekst waha się w zakresie od około 95 do około 105. Obszar pomiędzy tekstem a zamarkowanymi pięcioliniami ma niezbyt duże odchylenie standardowe ponieważ mogą się w tych liniach znajdować nuty dodane, ogonki nut jednak nie będzie ich nigdy zbyt wiele i rozrzut w tych liniach nie będzie większy od rozrzutu w liniach w których znajdują się litery.
+		    Na podstawie wykresu (Rysunek \ref{fig:stdDevLineTex}) można zauważyć ze tekst znajduje się pomiędzy dwoma większymi obszarami o wartościach zerowych, dokładniej pomiędzy liniami od około 240 do około 270, odchylenie standardowe wierszy zawierających tekst waha się w zakresie od około 95 do około 105. Obszar pomiędzy tekstem a zamarkowanymi pięcioliniami ma niezbyt duże odchylenie standardowe ponieważ mogą się w tych liniach znajdować nuty dodane, ogonki nut jednak nie będzie ich nigdy zbyt wiele i rozrzut w tych liniach nie będzie większy od rozrzutu w liniach w których znajdują się litery.
 
         \subsubsection{Detekcja i wycięcie liter}
             \hspace{\spacingIndent} Aby odczytać zawarty na obrazie tekst konieczna jest rozpoznanie pojedynczych znaków i ich odpowiednie przechowanie (właściwa kolejność).            Algorytmy klasy DetectLetter wykrywają krawędzie w obrazie wejściowym,     następnie grupują je w zbiory o taki samych współrzędnych x-owych, dzięki    czemu jedna grupa konturów stanowi jeden znak (literę, znak                 interpunkcyjny, etc.), grupy są sortowane rosnąco według współrzędnych      x-owych. Z każdego zbioru konturów zostają wyznaczone skrajne współrzędne    $ max_{x} , min_{x}, max_{y}, min_{y} $. Na podstawie tych wartości z       obrazu wejściowego zostaje wycięty kontur zawierający się w tym             prostokącie. Tak wyciętemu obrazowi zostaje nadana jednoznaczna nazwa       według jego indeksu w zbiorze posortowanym, według rosnącego rozmieszczenia na osi OX obrazu. 
@@ -995,8 +995,8 @@
                     \caption{}
                 \end{subfigure}
                 \caption
-                [Przykladowe wycięte litery]
-                {Przykladowe wycięte litery}
+                [Przykładowe wycięte litery]
+                {Przykładowe wycięte litery}
                 %\label{}
             \end{figure}
 
@@ -1005,7 +1005,7 @@
             Do klasyfikacji liter została użyta konwolucyjna sieć neuronowa której model znajduje się w klasie LetterClassifier (Listing \ref{lst:cnnLetter}). Sieć  
             uczy się rozpoznawać litery abecadła, w tym również polskich znaków     diakrytycznych, majuskuł i minuskuł (łącznie 64 znaki, klasy), na           podstawie wcześniej przygotowanych jednokanałowych zdjęć,     o rozmiarach 50px x 25px, Konfiguracja sieci różni się od poprzedniej (Listing \ref{lst:cnnLine})    jedynie kilkoma parametrami i dodatkowymi dwoma warstwami:                  ConvolutionLayer.Builder(x, y) i  SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX).
 	       \newline
-	       \lstinputlisting[caption={Konfiguracja sieci neuronowej kalsyfikującej litery}, label={lst:cnnLetter}]{cnnLetter.java}
+	       \lstinputlisting[caption={Konfiguracja sieci neuronowej klasyfikującej litery}, label={lst:cnnLetter}]{cnnLetter.java}
 	            %\begin{figure}[!ht]  
 	    	    %    \begin{center}
 	    		%        \includegraphics[width=15cm, frame] %image//practicalPart//cnnConf_01.png} 
@@ -1030,7 +1030,7 @@
                 \end{center}
             \end{spacing}
             
-             Trening sieci neuronowej daje dość zadowalające wyniki. Sieć bardzo dobrze rozpoznaje (zwraca wysokie prawdopodobieństwo > 0.9) pojedyncze litery podobne do tych ze zbioru na którym się uczy. Podczas pracy ze zbiorem danych ze śpiewników nie zawsze algorytm rozpoznawania konturów pojedynczych liter zwraca zadowalające wyniki często gdy kontury liter zachodzą na siebie zwraca kilka liter w jednym obrazie lub dodatkowych znaków co uniemożliwia poprawne rozpoznanie przez sieć. 
+             Trening sieci neuronowej daje dość zadowalające wyniki. Sieć bardzo dobrze rozpoznaje (zwraca wysokie prawdopodobieństwo > 0.9) pojedyncze litery podobne do tych ze zbioru na którym się uczy. Podczas pracy ze zbiorem danych ze śpiewników nie zawsze algorytm rozpoznawania konturów pojedynczych liter zwraca zadowalające wyniki, często gdy kontury liter zachodzą na siebie zwraca kilka liter w jednym obrazie lub dodatkowych znaków co uniemożliwia poprawne rozpoznanie przez sieć. 
 
             \begin{figure}[h!]
                 \centering
@@ -1052,8 +1052,8 @@
                     \caption{}
                 \end{subfigure}
                 \caption
-                    [Przykladowe znaki, litery wycięte niepoprawnie]
-                    {Przykladowe znaki, litery wycięte niepoprawnie}
+                    [Przykładowe znaki, litery wycięte niepoprawnie]
+                    {Przykładowe znaki, litery wycięte niepoprawnie}
                 %\label{}
             \end{figure}
 
