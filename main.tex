@@ -149,7 +149,7 @@
 	\addcontentsline{toc}{section}{Streszczenie}
 	     \hspace{\spacingIndent} Niniejsza praca dyplomowa w sposób            zwięzły opisuje prototyp systemu umożliwiającego       pozyskanie tekstu z obrazów stron śpiewników kościelnych i     jego dalsze możliwości rozwoju. 
 	     
-         Na pracę pisemną składają się dwie zasadnicze części:        teoretyczna i praktyczna. Część teoretyczna opisuje           wybrane technologie, które zostały wykorzystane w             systemie. Wybranym językiem programowania w którym powstała aplikacja był język Java, który determinował wybór frameworku dla sztucznych sieci neuronowych, dla tego języka -- Deeplearning4J. Inne technologie które znalazły zastosowanie w systemie to OpenCv, wykorzystany do cyfrowego przetwarzania obrazów i system OCR Tesseract. Połączenie tych komponentów i zadbanie oo ich właściwą współpracę umożliwiło napisanie aplikacji. Część praktyczna w sposób przejrzysty           przedstawia szczegóły implementacyjne algorytmów. W podsumowaniu        autor w sposób krytyczny rekapituluje wykonaną pracę,          zwraca uwagę na zalety i wady wypracowanego                rozwiązania, jednocześnie podając sposoby na rozwiązanie      powstałych problemów oraz wskazuje, proponuje drogi           rozwoju projektu.   
+         Na pracę pisemną składają się dwie zasadnicze części:        teoretyczna i praktyczna. Część teoretyczna opisuje           wybrane technologie, które zostały wykorzystane w             systemie. Wykorzystanym językiem programowania w którym powstała aplikacja był język Java, który determinował wybór frameworku dla sztucznych sieci neuronowych -- Deeplearning4J. Inne technologie które znalazły zastosowanie w systemie to OpenCv, wykorzystany do cyfrowego przetwarzania obrazów i system OCR Tesseract. Połączenie tych komponentów i zadbanie o ich właściwą współpracę umożliwiło prawidłowe działanie aplikacji. Część praktyczna w sposób przejrzysty           przedstawia szczegóły implementacyjne algorytmów. W podsumowaniu        autor w sposób krytyczny rekapituluje wykonaną pracę,          zwraca uwagę na zalety i wady wypracowanego                rozwiązania, jednocześnie podając sposoby na rozwiązanie      powstałych problemów oraz wskazuje drogi           rozwoju projektu.   
 	\section*{Abstract}
     \addcontentsline{toc}{section}{Abstract}    
 	\newpage 
@@ -186,8 +186,6 @@
 
 	\section{Wykorzystane technologie}
 	    \hspace{\spacingIndent} Założenia początkowe, które miał spełnić system możliwe były do osiągnięcia przy wykorzystaniu różnych technologii dostępnych na rynku. Wybrane zostały następujące narzędzia: do przetwarzania obrazów -- biblioteka OpenCv, do budowy sztucznych sieci neuronowych -- DL4J, do odczytania tekstu -- Tesseract, zaś całość została napisana w języku programowania Java. Właściwe połączenie i wykorzystanie tych elementów pozwoliło na zrealizowanie założeń systemu. Technologie te zostały opisane w kolejnych podrozdziałach wraz z ich zaletami, które zadecydowały o ich wyborze.
-	    
-	    
 	    
 		\subsection{Biblioteka OpenCv}
 		\hspace{\spacingIndent} Cyfrowe przetwarzanie obrazów \textit{(ang. digital image processing)} jest dziedziną nauki 
@@ -289,7 +287,7 @@
 							\begin{itemize}
 								\item{8U -- 8-bitowy char bez znaku}
 								\item{16S -- 16-bitowy short ze znakiem}
-								\item{16U -- 16-bitowy short bez znakiu}
+								\item{16U -- 16-bitowy short bez znaku}
 								\item{32S -- 32-bitowa liczba całkowita ze znakiem}
 								\item{32F -- 32-bitowa liczba zmiennoprzecinkowa}
 								\item{64F -- 64-bitowa liczba zmiennoprzecinkowa}
@@ -333,7 +331,7 @@
             \end{displaymath}
             
             Przykład działania konwolucji został zaprezentowany na Rysunku \ref{fig:przykladDzialaniaKonwolucji}. 
-            Przez każdy z kanałów obrazu wejściowego (kolor niebieski) przechodzą dwa filtry (kolor czerwony). Krok z jakim filtr przesuwa się wynosi dwa piksele (dwie kolumny) co można zaobserwować na parze (a) i (b) oraz parze (c) i (d). Wynik działania każdego z filtrów zapisywany jest do macierzy wynikowej (kolory zielonego). 
+            Przez każdy z kanałów obrazu wejściowego (kolor niebieski) przechodzą dwa filtry (kolor czerwony). Krok z jakim filtr przesuwa się wynosi dwa piksele (dwie kolumny) co można zaobserwować na parze (a) i (b) oraz parze (c) i (d). Wynik działania każdego z filtrów zapisywany jest do macierzy wynikowej (kolor zielonego). 
             
             %Obraz wejściowy (koloru niebieskiego), który jest trójkanałowy zostaje przetworzony przez dwa filtry (koloru czerwonego), które przesuwają się co 2 piksele (dwie kolumny), przechodzą przez obraz wejściowy , a wynik działania splotu zostaje zapisany w macierzy wynikowej (koloru zielonego).
             
@@ -377,7 +375,7 @@
 				\sigma (z)_{j} = \frac{e^{z_{j}}}{ \sum_{k=1}^K e^{z_{j}}}
 			\end{displaymath}
 			\end{center}
-			Suma wartości wektora wyjściowego wynosi jeden. Wektor wejsciowy oraz wyjściowy mają taki sam rozmiar. Funkcja normalizuje K wymiarowy wektor w K wymiarowy wektor  
+			Suma wartości wektora wyjściowego wynosi jeden. Wektor wejściowy oraz wyjściowy mają taki sam rozmiar. Funkcja normalizuje K wymiarowy wektor w K wymiarowy wektor  
 			$ \sigma (z)$. 
         
 	    Zjawiskiem występującym przy zastosowaniu konwolucyjnych sieci neuronowych jest pooling (Rysunek \ref{fig:maxPooling}). Polega on na zmniejszeniu wymiarowości 
@@ -409,7 +407,7 @@
 			wag dotychczasowych. W celu poprawy efektywności wstecznej propagacji błędów często zaleca się następujące metody: 
 			zastosowanie losowych wag początkowych, kilkukrotne powtarzanie procesu uczenia. Sam algorytm uwzględnia następujące kroki 
 			zakładając losową generację wag początkowych: obliczenie odpowiedź sieci dla każdego z wektorów uczących, 
-			każdy z neuronów wyjściowy oblicza swój błąd, propagacja błędów do warstw wcześniejszych, na podstawie propagowanej wartości 
+			każdy z neuronów wyjściowych oblicza swój błąd, propagacja błędów do warstw wcześniejszych, na podstawie propagowanej wartości 
 			błędu każdy z neuronów modyfikuje wagi, powyższe kroki są powtarzane dopóki średni błąd nie przestanie maleć.
 \subsubsection {Sieci konwolucyjne w języku Java}
         \hspace{\spacingIndent} Do budowy konwolucyjnych sieci neuronowych został wykorzystany framework Deeplearning4j. Działa on na wirtualnej maszynie Javy. 
@@ -456,7 +454,7 @@
 			Dostępne są interfejsy umożliwiające korzystanie z narzędzia, z poziomu innych języków np. Java (wrapper Tess4J). 
 			
 			 Pierwsza wersja umożliwiała pracę z językiem angielskim, kolejne wydania powiększały listę pakietów językowych, 
-			najpierw o inne języki zachodnioeuropejskie, a później o inne języki. Na szczególna uwagę wśród nich zasługują japoński, chiński, 
+			najpierw o inne języki zachodnioeuropejskie, a później o inne języki używane w świecie. Na szczególna uwagę wśród nich zasługują japoński, chiński, 
 			i języki semickie czytane od prawej do lewej. Obecne narzędzie udostępnia wybór pakietu językowego uwzględniającego 
 			znaki diakrytyczne wśród około 130 możliwych. Oprócz obsługi różnych języków możliwa jest obsługa różnych czcionek. 
 			
