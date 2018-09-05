@@ -150,8 +150,11 @@
 	     \hspace{\spacingIndent} Niniejsza praca dyplomowa w sposób            zwięzły opisuje prototyp systemu umożliwiającego       pozyskanie tekstu z obrazów stron śpiewników kościelnych i     jego dalsze możliwości rozwoju. 
 	     
          Na pracę pisemną składają się dwie zasadnicze części:        teoretyczna i praktyczna. Część teoretyczna opisuje           wybrane technologie, które zostały wykorzystane w             systemie. Wykorzystanym językiem programowania w którym powstała aplikacja był język Java, który determinował wybór frameworku dla sztucznych sieci neuronowych -- Deeplearning4J. Inne technologie które znalazły zastosowanie w systemie to OpenCv, wykorzystany do cyfrowego przetwarzania obrazów i system OCR Tesseract. Połączenie tych komponentów i zadbanie o ich właściwą współpracę umożliwiło prawidłowe działanie aplikacji. Część praktyczna w sposób przejrzysty           przedstawia szczegóły implementacyjne algorytmów. W podsumowaniu        autor w sposób krytyczny rekapituluje wykonaną pracę,          zwraca uwagę na zalety i wady wypracowanego                rozwiązania, jednocześnie podając sposoby na rozwiązanie      powstałych problemów oraz wskazuje drogi           rozwoju projektu.   
+         
+         Słowa kluczowe:?Partytura?, OpenCV, Przetwarzanie obrazów, Konwolucyjne Sieci Neuronowe, Tesseract OCR
 	\section*{Abstract}
-    \addcontentsline{toc}{section}{Abstract}    
+    \addcontentsline{toc}{section}{Abstract}   
+    Keywords:?Music sheet detection?, OpenCV, Image Processing, Convolutional Neutral Network, Tesseract OCR
 	\newpage 
 	\noindent\begin{minipage}[s]{\textwidth}
 	\section{Wstęp}
@@ -1096,7 +1099,7 @@
 					\label{fig:gui}
             \end{figure}
             
-             Wszystkie opracowane rozwiązania zostały udostępnione poprzez prosty graficzny interfejs użytkownika. Po uruchomieniu programu pojawia się okienko Rysunek \ref{fig:gui} (a) , następnie  użytkownik określa kilka parametrów, które wykorzystują algorytmy (czy dodatkowo ma być usunięty czarny obszar po lewej stronie, czy tekst znajduje się pomiędzy dwoma liniami muzycznymi czy pod linią muzyczną). Kolejnym krokiem jest wybór pliku z zasobów komputera, np. plik .pdf (Rysunek \ref{fig:gui} (b)). Teraz wybrany plik zostaje przetworzony przez wszystkie wcześniej opisane algorytmy. Okienko wyświetla informację jaki algorytm został wykonany i zmienia się niebieski pasek postępu. Gdy zdjęcie przejdzie przez wszystkie algorytmy pasek postępu osiąga wartość maksymalna i zostaje wyświetlona ścieżka do wyjściowych plików .txt.
+             Wszystkie opracowane rozwiązania zostały udostępnione poprzez prosty graficzny interfejs użytkownika. Po uruchomieniu programu pojawia się okienko (Rysunek \ref{fig:gui} (a)), następnie  użytkownik określa kilka parametrów, które wykorzystują algorytmy (czy dodatkowo ma być usunięty czarny obszar po lewej stronie, czy tekst znajduje się pomiędzy dwoma liniami muzycznymi czy pod linią muzyczną). Kolejnym krokiem jest wybór pliku z zasobów komputera, (Rysunek \ref{fig:gui} (b)). Teraz wybrany plik zostaje przetworzony przez wszystkie wcześniej opisane algorytmy. Okienko wyświetla informację jaki algorytm został wykonany i zmienia się niebieski pasek postępu. Gdy zdjęcie przejdzie przez wszystkie algorytmy pasek postępu osiąga wartość maksymalną i zostaje wyświetlona ścieżka do wyjściowych plików .txt.
 	        
 	   \newpage  
 	   \section{Podsumowanie}
