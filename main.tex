@@ -11,6 +11,8 @@
 \usepackage{multicol}
 \usepackage{biblatex}
 
+\usepackage{pdfpages}
+
 \usepackage{graphicx} 
 \usepackage[export]{adjustbox}
 \usepackage{wrapfig} 
@@ -156,10 +158,19 @@
 	     
          Na pracę pisemną składają się dwie zasadnicze części:        teoretyczna i praktyczna. Część teoretyczna opisuje           wybrane technologie, które zostały wykorzystane w             systemie. Wykorzystanym językiem programowania w którym powstała aplikacja był język Java, który determinował wybór frameworku dla sztucznych sieci neuronowych -- Deeplearning4J. Inne technologie które znalazły zastosowanie w systemie to OpenCV, wykorzystany do cyfrowego przetwarzania obrazów i system OCR Tesseract. Połączenie tych komponentów i zadbanie o ich właściwą współpracę umożliwiło prawidłowe działanie aplikacji. Część praktyczna w sposób przejrzysty           przedstawia szczegóły implementacyjne algorytmów. W podsumowaniu        autor w sposób krytyczny rekapituluje wykonaną pracę,          zwraca uwagę na zalety i wady wypracowanego                rozwiązania, jednocześnie podając sposoby na rozwiązanie      powstałych problemów oraz wskazuje drogi           rozwoju projektu.   
          
-         Słowa kluczowe:?Partytura?, OpenCV, Przetwarzanie obrazów, Konwolucyjne Sieci Neuronowe, Tesseract OCR
+         Słowa kluczowe: Detekcja nut, OpenCV, Przetwarzanie obrazów, Konwolucyjne Sieci Neuronowe, Tesseract OCR
 	\section*{Abstract}
     \addcontentsline{toc}{section}{Abstract}   
-    Keywords:?Music sheet detection?, OpenCV, Image Processing, Convolutional Neutral Network, Tesseract OCR
+    \hspace{\spacingIndent} This dissertation compactly describes the prototype of the system that allows obtaining text from images of church song pages and its further development possibilities.
+
+    The thesis associates two major part: partical and theoretical.
+    The theoretical part describes the selected technologies which 
+    (lub that) were used in system. The programming language used in which the application was created was Java
+    (lub The utilized programing language was Java), 
+    which determined the choice of the framework for artificial neural networks - Deeplearning4J. Other technologies that have been used in the system are OpenCV,
+    used for digital image processing (lub which was used for digital image processing) and the Tesseract OCR system. The combination of these components and ensuring their appropriate cooperation enabled the correct operation of the application. The practical part clearly presents the implementation details of the algorithms. (lub The practical part in transparent way introduce the implementation details of the algorithm.) In the summary, the author critically recapitulates the work executed, draws attention to the advantages and disadvantages of the developed solution, at the same time giving ways to solve the problems and indicates the way of project development.
+    
+    Keywords: Music sheet detection, OpenCV, Image Processing, Convolutional Neutral Network, Tesseract OCR
 	\newpage 
 	\noindent\begin{minipage}[s]{\textwidth}
 	\section{Wstęp}
@@ -211,7 +222,7 @@
 				jednak przeznaczoną dla użytku wewnętrznego. Studenci w obrębie jednej jednostki akademickiej dzielili się kodem zawierającym gotowe 
 				implementacje algorytmów, co znacząco ułatwiało prace przy własnych projektach czy aplikacjach. Stąd głównym celem biblioteki OpenCV 
 				jest udostępnienie wszystkim zainteresowanym zagadnieniami przetwarzania obrazów i sztucznej inteligencji gotowej, jednolitej, 
-				darmowej infrastruktury pozwalającej na pracę, tak aby nie trzeba było ponownie "wynajdywać koła".
+				darmowej infrastruktury pozwalającej na pracę, tak aby nie trzeba było ponownie "wynajdywać koła". \cite{1}
 				
 			OpenCV zostało przedstawione po raz pierwszy w 1999 roku szerszemu gronu odbiorców.  W wersji 1.0 kod biblioteki stanowiły wyłącznie najbardziej użyteczne przy przetwarzaniu obrazów algorytmy zaimplementowane w języku C. 
 				Od tego czasu biblioteka znacząco się zmieniła. 
@@ -1221,8 +1232,7 @@
                 
             \bibitem{16}    
             \href{https://www.tiobe.com//tiobe-index}{\url{https://www.tiobe.com//tiobe-index}}.
-
- \end{thebibliography}
+        \end{thebibliography}
 	        
-	        
+	        \includepdf[pages=-]{include.pdf}
 \end{document}
