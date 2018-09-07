@@ -6,6 +6,11 @@
 \usepackage{polski}
 \usepackage[T1]{fontenc}
 
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+\usepackage{multicol}
+\usepackage{biblatex}
+
 \usepackage{graphicx} 
 \usepackage[export]{adjustbox}
 \usepackage{wrapfig} 
@@ -117,7 +122,7 @@
             \begin{center}\textbf{PRACA DYPLOMOWA INŻYNIERSKA}\end{center} 
         \vspace*{50px}
         \fontsize{12pt}{0.2}\selectfont
-            \begin{center}System umożliwiający digitalizację zapisów nutowych pieśni, \\\vspace{3mm} ułatwiający ich przechowywanie i przetwarzani\end{center} \vspace{5mm}
+            \begin{center}System umożliwiający digitalizację zapisów nutowych pieśni, \\\vspace{3mm} ułatwiający ich przechowywanie i przetwarzanie\end{center} \vspace{5mm}
             \begin{center}A system for digitization of sheet music facilitating their storage and processing\end{center} 
         \vspace*{50px}
         \fontsize{12pt}{0.2}\selectfont 
@@ -137,7 +142,7 @@
 	\pagenumbering{gobble}
     \pagenumbering{arabic}
 	\setcounter{page}{2}
-	\begin{spacing}{1.4}
+	\begin{spacing}{1.35}
 	%\begin{minipage}{\textwidth}
 	    \noindent\begin{minipage}[s]{\textwidth}
             \tableofcontents
@@ -149,7 +154,7 @@
 	\addcontentsline{toc}{section}{Streszczenie}
 	     \hspace{\spacingIndent} Niniejsza praca dyplomowa w sposób            zwięzły opisuje prototyp systemu umożliwiającego       pozyskanie tekstu z obrazów stron śpiewników kościelnych i     jego dalsze możliwości rozwoju. 
 	     
-         Na pracę pisemną składają się dwie zasadnicze części:        teoretyczna i praktyczna. Część teoretyczna opisuje           wybrane technologie, które zostały wykorzystane w             systemie. Wykorzystanym językiem programowania w którym powstała aplikacja był język Java, który determinował wybór frameworku dla sztucznych sieci neuronowych -- Deeplearning4J. Inne technologie które znalazły zastosowanie w systemie to OpenCv, wykorzystany do cyfrowego przetwarzania obrazów i system OCR Tesseract. Połączenie tych komponentów i zadbanie o ich właściwą współpracę umożliwiło prawidłowe działanie aplikacji. Część praktyczna w sposób przejrzysty           przedstawia szczegóły implementacyjne algorytmów. W podsumowaniu        autor w sposób krytyczny rekapituluje wykonaną pracę,          zwraca uwagę na zalety i wady wypracowanego                rozwiązania, jednocześnie podając sposoby na rozwiązanie      powstałych problemów oraz wskazuje drogi           rozwoju projektu.   
+         Na pracę pisemną składają się dwie zasadnicze części:        teoretyczna i praktyczna. Część teoretyczna opisuje           wybrane technologie, które zostały wykorzystane w             systemie. Wykorzystanym językiem programowania w którym powstała aplikacja był język Java, który determinował wybór frameworku dla sztucznych sieci neuronowych -- Deeplearning4J. Inne technologie które znalazły zastosowanie w systemie to OpenCV, wykorzystany do cyfrowego przetwarzania obrazów i system OCR Tesseract. Połączenie tych komponentów i zadbanie o ich właściwą współpracę umożliwiło prawidłowe działanie aplikacji. Część praktyczna w sposób przejrzysty           przedstawia szczegóły implementacyjne algorytmów. W podsumowaniu        autor w sposób krytyczny rekapituluje wykonaną pracę,          zwraca uwagę na zalety i wady wypracowanego                rozwiązania, jednocześnie podając sposoby na rozwiązanie      powstałych problemów oraz wskazuje drogi           rozwoju projektu.   
          
          Słowa kluczowe:?Partytura?, OpenCV, Przetwarzanie obrazów, Konwolucyjne Sieci Neuronowe, Tesseract OCR
 	\section*{Abstract}
@@ -188,27 +193,27 @@
 	\newpage 
 
 	\section{Wykorzystane technologie}
-	    \hspace{\spacingIndent} Założenia początkowe, które miał spełnić system możliwe były do osiągnięcia przy wykorzystaniu różnych technologii dostępnych na rynku. Wybrane zostały następujące narzędzia: do przetwarzania obrazów -- biblioteka OpenCv, do budowy sztucznych sieci neuronowych -- DL4J, do odczytania tekstu -- Tesseract, zaś całość została napisana w języku programowania Java. Właściwe połączenie i wykorzystanie tych elementów pozwoliło na zrealizowanie założeń systemu. Technologie te zostały opisane w kolejnych podrozdziałach wraz z ich zaletami, które zadecydowały o ich wyborze.
+	    \hspace{\spacingIndent} Założenia początkowe, które miał spełnić system możliwe były do osiągnięcia przy wykorzystaniu różnych technologii dostępnych na rynku. Wybrane zostały następujące narzędzia: do przetwarzania obrazów -- biblioteka OpenCV, do budowy sztucznych sieci neuronowych -- DL4J, do odczytania tekstu -- Tesseract, zaś całość została napisana w języku programowania Java. Właściwe połączenie i wykorzystanie tych elementów pozwoliło na zrealizowanie założeń systemu. Technologie te zostały opisane w kolejnych podrozdziałach wraz z ich zaletami, które zadecydowały o ich wyborze.
 	    
-		\subsection{Biblioteka OpenCv}
+		\subsection{Biblioteka OpenCV}
 		\hspace{\spacingIndent} Cyfrowe przetwarzanie obrazów \textit{(ang. digital image processing)} jest dziedziną nauki 
 			zajmującą się reprezentacją obrazu w pamięci komputera, jego akwizycją i przetwarzaniem. 
          Obecnie dostępnych jest wiele bibliotek umożliwiających pracę z obrazami, na przykład: Imagemagick, Generic Image Library, SIMD i inne. 
-			Najbardziej powszechną biblioteką jest jednak biblioteka OpenCv. Wieloletnia praca nad algorytmami przetwarzającymi obrazy pozwoliła zbudować optymalną i bardzo bogatą, bezkonkurencyjną funkcjonalność.
-			Ponadto OpenCv posiada przejrzystą 
+			Najbardziej powszechną biblioteką jest jednak biblioteka OpenCV. Wieloletnia praca nad algorytmami przetwarzającymi obrazy pozwoliła zbudować optymalną i bardzo bogatą, bezkonkurencyjną funkcjonalność.
+			Ponadto OpenCV posiada przejrzystą 
 			i zawierającą podstawy matematyczne dokumentację, zaś dynamicznie rozwijająca się społeczność zgromadzona wokół biblioteki ułatwia 
 			z nią pracę szczególnie nowym użytkownikom.
 			%\paragraph{\indent} 
-			%	OpenCv jest biblioteką służącą do komputerowego przetwarzania obrazów oraz uczenia maszynowego, o otwartym kodzie źródłowym.
-		\subsubsection{Zarys historyczny}
+			%	OpenCV jest biblioteką służącą do komputerowego przetwarzania obrazów oraz uczenia maszynowego, o otwartym kodzie źródłowym.
+		\subsubsection{Zarys historyczny \cite{1}}
 			\hspace{\spacingIndent} Prace nad budową tej biblioteki rozpoczął jeden z pracowników firmy Intel -- Gary Rost Bradski, 
 				zainspirowany środowiskiem akademickim, które wówczas posiadało bardzo bogatą infrastrukturę służącą do przetwarzania obrazów, 
 				jednak przeznaczoną dla użytku wewnętrznego. Studenci w obrębie jednej jednostki akademickiej dzielili się kodem zawierającym gotowe 
-				implementacje algorytmów, co znacząco ułatwiało prace przy własnych projektach czy aplikacjach. Stąd głównym celem biblioteki OpenCv 
+				implementacje algorytmów, co znacząco ułatwiało prace przy własnych projektach czy aplikacjach. Stąd głównym celem biblioteki OpenCV 
 				jest udostępnienie wszystkim zainteresowanym zagadnieniami przetwarzania obrazów i sztucznej inteligencji gotowej, jednolitej, 
 				darmowej infrastruktury pozwalającej na pracę, tak aby nie trzeba było ponownie "wynajdywać koła".
 				
-			OpenCv zostało przedstawione po raz pierwszy w 1999 roku szerszemu gronu odbiorców.  W wersji 1.0 kod biblioteki stanowiły wyłącznie najbardziej użyteczne przy przetwarzaniu obrazów algorytmy zaimplementowane w języku C. 
+			OpenCV zostało przedstawione po raz pierwszy w 1999 roku szerszemu gronu odbiorców.  W wersji 1.0 kod biblioteki stanowiły wyłącznie najbardziej użyteczne przy przetwarzaniu obrazów algorytmy zaimplementowane w języku C. 
 				Od tego czasu biblioteka znacząco się zmieniła. 
 			
 			 W wersji 2.0 znaczący wpływ na wydanie wywarły trendy obecne w prowadzeniu projektów, w których wytwarza się oprogramowanie -- repozytorium kodu
@@ -226,7 +231,7 @@
     					
     					
     					\item moduł \textit {opencv\_contrib} zawierający kod napisany i dołączony do biblioteki przez użytkowników,
-    					\item rdzeń OpenCv,
+    					\item rdzeń OpenCV,
     					\item optymalizacje sprzętowe (warstwa HAL \textit {ang. hardware acceleration layer}).
     				\end{itemize} 
                 \end{spacing}
@@ -236,8 +241,8 @@
 						\includegraphics[width=12cm] {image//openCvBudowa.png} 
 					\end{center}
 					\caption
-					    [Budowa modułowa OpenCv]
-					    {Budowa modułowa OpenCv}
+					    [Budowa modułowa OpenCV]
+					    {Budowa modułowa OpenCV}
 				\end{figure}
 
 				 
@@ -256,13 +261,13 @@
 			\hspace{\spacingIndent} Projekt cieszy się bardzo dużym powodzeniem, które nieustannie rośnie. Świadczy o tym liczba pobrań 
 				wynosząca około 14 milionów razy, zaś miesięcznie około 200 tysięcy. Obecnie biblioteka zawiera ponad 2500 zoptymalizowanych algorytmów, 
 				które służą do przetwarzania obrazów również w czasie rzeczywistym i uczenia maszynowego, co znacząco ułatwia tworzenie aplikacji użytkownikom. 
-				Programiści piszący kod uwzględniali wymóg przenośności OpenCv, a więc możliwości kompilacji na każdym odpowiednim kompilatorze języka C++, 
+				Programiści piszący kod uwzględniali wymóg przenośności OpenCV, a więc możliwości kompilacji na każdym odpowiednim kompilatorze języka C++, 
 				co wymusiło restrykcyjną zgodność ze standardem i ułatwiło obsługę różnych platform. Biblioteka dostępna jest na systemach operacyjnych takich jak: 
 				Windows, Linux, Mac OS X, do których dołączyły systemy operacyjne platform mobilnych (Android i iOS), co znacząco przyczyniło się do zwiększenia liczby użytkowników.
 
-		\subsubsection{Zastosowania biblioteki OpenCv}
+		\subsubsection{Zastosowania biblioteki OpenCV}
 			\hspace{\spacingIndent} Dynamiczny rozwój technologiczny otwiera przed biblioteką nowy horyzont użyteczności. 
-				OpenCv znajduje zastosowanie w wielu obszarach życia do tego stopnia że wykorzystanie projektu wydaje się rzeczą całkowicie naturalna,
+				OpenCV znajduje zastosowanie w wielu obszarach życia do tego stopnia że wykorzystanie projektu wydaje się rzeczą całkowicie naturalna,
 				a wręcz niezauważalną. Biblioteka wykorzystywana jest w:
 			
 			    \begin{spacing}{\spacingInSolemnItemize}
@@ -280,8 +285,8 @@
                 \end{spacing}
     
     	\subsubsection{Reprezentacja obrazów}
-			\hspace{\spacingIndent} Obrazy można podzielić w najprostszy sposób na obrazy barwne i obrazy w skali szarości. Obrazy w bibliotece OpenCv 
-				reprezentowane są w postaci macierzy (Mat). Narzędzie to udostępnia bogatą gamę możliwości reprezentacji poszczególnego piksela, 
+			\hspace{\spacingIndent} Obrazy można podzielić w najprostszy sposób na obrazy barwne i obrazy w skali szarości. Obrazy w bibliotece OpenCV 
+				reprezentowane są w postaci macierzy \textit{(Mat)}. Narzędzie to udostępnia bogatą gamę możliwości reprezentacji poszczególnego piksela, 
 				a więc i samego obrazu. Tak więc jeden piksel jest reprezentowany w następujący sposób -- CV\_xCy, gdzie:
 			
 				\begin{spacing}{\spacingInSolemnItemize}
@@ -370,8 +375,24 @@
 			Następnie dane wejściowe przechodzą przez nieliniową transformację (funkcję aktywacji), która określa czy perceptron będzie aktywowany czy nie. 
 			Funkcja ta odgrywa znacząca rolę w dopasowaniu gradientów. Funkcje te są ciągłe i różniczkowalne (wyjątek stanowi funkcja ReLU w zerze).
         
-			Wśród funkcji aktywacji wyróżniamy funkcje takie jak: funkcja sigmoidalna,  tangens hiperboliczny \textit{(tanh)}, rektyfikowana jednostka liniowa 
-			\textit{(ang. The Rectified Linear Unit (ReLU))}, które mapują wartość wejściowa w zakresach odpowiednio (0, 1), (-1, 1) i (0, x). Funkcja softmax przetwarza wektor wejściowy na wektor wyjściowy według następującego wzoru będącego rozkładem prawdopodobieństwa, 
+			Wśród funkcji aktywacji wyróżniamy funkcje takie jak: funkcja sigmoidalna,  tangens hiperboliczny \textit{(tanh)}, które mapują wartość wejściowa w zakresach odpowiednio (0, 1), (-1, 1). 
+			Bardzo duża popularnością dla warstw ukrytych sieci neuronowej cieszy się funkcja aktywacji: rektyfikowana jednostka liniowa 
+			\textit{(ang. The Rectified Linear Unit (ReLU))}, która jest najprostszą nieliniową funkcją aktywacji. Prostota tego rozwiązania niesie ze sobą również pewne niebezpieczeństwo całkowitego wykluczenia neuronu (neuron nigdy nie będzie aktywowany) przy zbyt szybkim uczeniu się sieci.
+			Sama funkcja przyjmuje wartość zero dla wartości mniejszych od zera i wartość wejścia jeśli jest ono większe lub równe zero.
+			
+			\begin{displaymath}
+			%\begin{equation}
+                f(x) =  
+                \left\{
+                    \begin{array}{ll}
+                        0 & \textrm{dla } x < 0 \\
+                        x & \textrm{dla } x \geqslant 0
+                    \end{array}
+                \right.
+                %\label{eq:relu}
+            %\end{equation}
+            \end{displaymath}
+			Funkcja softmax przetwarza wektor wejściowy na wektor wyjściowy według następującego wzoru będącego rozkładem prawdopodobieństwa, 
 			mówiącego o prawdopodobieństwie wystąpienia poszczególnej klasy. 
         \begin{center}
 			\begin{displaymath}
@@ -402,7 +423,7 @@
 			Tak odrzucone neurony nie biorą już udziału w końcowym procesie wnioskowania. Obok dropout'u istnieją takie metody zapobiegające 
 			przeuczeniu się sieci jak: legularyzacja l1 i l2, zmniejszające wartość absolutną, pierwiastek kwadratowy wag, uznając, że modele mające 
 			zminimalizowane wagi osiągają lepsze wyniki. Regularyzacja, a w szczególności dropout pozytywnie wpływa na minimalizację błędu 
-			klasyfikacji sieci neuronowej \footnote{Na podstawie:  \href{https://leonardoaraujosantos.gitbooks.io//artificial-inteligence//content//dropout_layer.html}{\url{https://leonardoaraujosantos.gitbooks.io//artificial-inteligence//content//dropout_layer.html}}, dostęp 2018.08.03.}
+			klasyfikacji sieci neuronowej. 
         
         Zasadniczym metodą bez której uczenie się sieci neuronowych byłoby niemożliwe, a której implementacje jednocześnie służą optymalizacji sieci neuronowych (wielowarstwowych) jest algorytm wstecznej propagacji błędów 
 			\textit{(ang. backpropagation)}. Wagi poszczególnych połączeń mogą zostać wytrenowane, a więc dobrane automatycznie i stanowiące 
@@ -425,20 +446,22 @@
 
 			\begin{spacing}{\spacingInSolemnItemize}
 				\begin{itemize}
-					\item ConvolutionLayer -- warstwa wykonująca konwolucję
+					\item \textit{ConvolutionLayer} -- warstwa wykonująca konwolucję
 						\begin{itemize}
-							\item ConvolutionLayer.Builder (x, y) -- określa wielkość jądra; x -- jego szerokość w pikselach, a y -- jego wysokość w pikselach,
-							\item stride (m, n) -- określa krok z jakim jądro jest przesuwane na obrazie wejściowym; m -- przesunięcie na osi odciętych w pikselach, 
-								a n -- przesunięcie na osi odciętych w pikselach,
-							\item nOut (k) -- określa liczbę filtrów przez które przechodzi obraz;
+							\item \textit{ConvolutionLayer.Builder(x, y)} -- określa wielkość jądra; \textit{x} -- jego szerokość w pikselach, a \textit{y} -- jego wysokość w pikselach,
+							\item \textit{stride(m, n)} -- określa krok z jakim jądro jest przesuwane na obrazie wejściowym; \textit{m} -- przesunięcie na osi odciętych w pikselach, 
+								a \textit{n} -- przesunięcie na osi odciętych w pikselach,
+							\item \textit{nOut(k)} -- określa liczbę filtrów przez które przechodzi obraz;
 						\end{itemize}
-					\item SubsamplingLayer -- warstwa odpowiadająca za pooling,
+				% 		\newline 
+				% 		\vspace*{15px}
+					\item \textit{SubsamplingLayer} -- warstwa odpowiadająca za pooling,
 						\begin{itemize}
-							\item SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.n) -- n -- określa rodzaj poolingu z pośród: MAX, AVG, SUM, PNORM; 
-							\item kernelSize (m, n) -- określa wielkość jądra; m -- jego szerokość w pikselach, a n -- jego wysokość w pikselach,
+							\item \textit{SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.n)} -- \textit{n} -- określa rodzaj poolingu z pośród: MAX, AVG, SUM, PNORM; 
+							\item \textit{kernelSize(m, n)} -- określa wielkość jądra; \textit{m} -- jego szerokość w pikselach, a \textit{n} -- jego wysokość w pikselach,
 						\end{itemize}
-					\item DenseLayer -- warstwa standardowa biorąca pod uwagę wszystkie wyjścia z warstwy poprzedniej,
-					\item OutputLayer -- warstwa wyjściowa odpowiadająca za klasyfikację;
+					\item \textit{DenseLayer} -- warstwa standardowa biorąca pod uwagę wszystkie wyjścia z warstwy poprzedniej,
+					\item \textit{OutputLayer} -- warstwa wyjściowa odpowiadająca za klasyfikację;
 				\end{itemize}
 			\end{spacing}
 			\vspace{\spacingVspace}
@@ -446,7 +469,6 @@
 			aktualizacje kroku uczenia, regularyzację i inne. Wszystkie dostępne warstwy i parametry konfiguracji sieci dostępne są na stronie projektu:
 			\href{https://deeplearning4j.org//quickref\#config}{\url{https://deeplearning4j.org//quickref\#config}}.
 			\newline
-		
             \lstinputlisting[caption={Przykładowa konfiguracja konwolucyjnej sieci neuronowej},label={lst:przykladowaSiec}]{przykladowaSiec.java}
 		
         
@@ -463,9 +485,7 @@
 			
 			W początkowej wersji Tesseract pozwalał na pracę z plikami o rozszerzeniu TIFF. Kolejne wersje systemu umożliwiają pracę z bogatszą gamą plików: 
 			JPEG, GIF, PNG, BMP, wielostronicowych plików TIFF dzięki wykorzystaniu biblioteki służącej do przetwarzania obrazów -- Leptonica 
-			(wrapper Java -- Lept4J). Dzięki współpracy dodatkowych bibliotek (GPL Ghostscript lub PDFBox) możemy odczytywać tekst zawarty w plikach PDF. 
-			
-			Dodatkowymi funkcjonalnościami, które zasługują na uwagę są: możliwość analizy układu strony, uzyskania informacji o położeniu rozpoznanego tekstu na stronie 
+			(wrapper Java -- Lept4J). Dzięki współpracy dodatkowych bibliotek (GPL Ghostscript lub PDFBox) możemy odczytywać tekst zawarty w plikach PDF.			Dodatkowymi funkcjonalnościami, które zasługują na uwagę są: możliwość analizy układu strony, uzyskania informacji o położeniu rozpoznanego tekstu na stronie 
 			i formatowanie tekstu wyjściowego. 
 			
 			Projekt dostępny jest na wielu platformach: Windows, Linux, Mac OS X. Tesseract nie udostępnia graficznego interfejsu użytkownika, 
@@ -476,7 +496,7 @@
 
 	\subsection{Środowisko programistyczne}
 		\hspace{\spacingIndent} Projekt powstał w technologii Java. Utrzymująca się popularność tej technologii na pierwszym miejscu 
-			(która wciąż rośnie)\footnote{\href{https://www.tiobe.com//tiobe-index}{\url{https://www.tiobe.com//tiobe-index}}, dostęp 2018.07.22} 
+			(która wciąż rośnie)
 			wśród języków programowania ułatwi dalszy rozwój i wsparcie aplikacji. 
 		
 		 W wersji 8, wprowadzone zostały znaczące kamienie milowe takie jak: wyrażenia lambda oraz strumienie. Zostały one wykorzystane 
@@ -484,41 +504,44 @@
         
 		Wykorzystanym IDE \textit{(ang. integrated development environment)} było Eclipse. Po utworzeniu projektu Maven, do pliku pom.xml 
 			dodano zależności umożliwiające wykorzystanie funkcjonalności Tesseract oraz zależności umożliwiające pracę z frameworkiem DL4J. 
-			Ponadto do projektu została dołączona biblioteka OpenCv jako biblioteka użytkownika. Wykorzystanie technologii Maven 
+			Ponadto do projektu została dołączona biblioteka OpenCV jako biblioteka użytkownika. Wykorzystanie technologii Maven 
 			w znaczący sposób ułatwiło zarządzanie zależnościami i wykorzystanymi bibliotekami w projekcie.
         \newpage
         
 \section{Część praktyczna}
-    \hspace{\spacingIndent} Ten rozdział pracy dyplomowej traktuje o szczegółach implementacyjnych zbudowanego systemu. Poszczególne podrozdziały opisują kolejne algorytmy przez jakie przechodzi plik pdf lub graficzny w celu uzyskania końcowego efektu -- pozyskania tekstu z obrazu. Znacząca część algorytmów została przedstawiona w postaci schematów blokowych (zawierających również fragmenty kodu napisanego w języku Java), odzwierciedlają one przede wszystkim przepływ sterowania i poszczególne operacje. W rozdziale tym znajdziemy również listingi, zostały one wykorzystane w miejscach gdzie wykorzystanie schematów blokowych ze względu na znaczącą liczbę operacji stałoby się nieczytelne. Wszystkie opisane algorytmy zostały scalone i zawarte w aplikacji okienkowej tak, aby użytkownik widział jedynie czy system wykonuje jakąś pracę i jej efekt końcowy.
+    \hspace{\spacingIndent} 
+    Niniejszy rozdział stanowiący centralną część pracy został poświęcony części praktycznej pracy dyplomowej.  Podczas budowy systemu główny nacisk został położony na algorytmy przetwarzające obrazy przy wykorzystaniu biblioteki OpenCV. Zaimplementowane sposoby przetwarzające obrazy są nietrywialne, pomimo że powstały one na potrzeby tego systemu niebagatelna ich część może zostać użyta samodzielnie dla dowolnych obrazów spełniających pewne założenia. Ważną funkcjonalność stanowi samo rozpoznawanie tekstu, pojedynczych liter. Wykorzystany został do tego celu system OCR Tesseract współpracujący z konwolucyjną siecią neuronową zaimplementowaną dzięki framework'owi Deep Learning for Java (DL4J). 
+    
+    Ten rozdział pracy dyplomowej traktuje o szczegółach implementacyjnych zbudowanego systemu. Poszczególne podrozdziały opisują kolejne algorytmy przez jakie przechodzi plik pdf lub graficzny w celu uzyskania końcowego efektu -- pozyskania tekstu z obrazu. Znacząca część algorytmów została przedstawiona w postaci schematów blokowych (zawierających również fragmenty kodu napisanego w języku Java), odzwierciedlają one przede wszystkim przepływ sterowania i poszczególne operacje. W rozdziale tym znajdziemy również listingi, zostały one wykorzystane w miejscach gdzie wykorzystanie schematów blokowych ze względu na znaczącą liczbę operacji stałoby się nieczytelne. Wszystkie opisane algorytmy zostały scalone i zawarte w aplikacji okienkowej tak, aby użytkownik widział jedynie czy system wykonuje jakąś pracę i jej efekt końcowy.
     
 	\subsection{Budowa aplikacji}
 		\hspace{\spacingIndent} Algorytmy  przetwarzające obrazy zostały umieszczone w odpowiednich klasach, ułatwiających posługiwanie się nimi. Rozwiązanie to wychodzi na przeciw podstawowym zasadą obiektowości takimi jak: modularyzacja, hermentyzacja, abstrakcja. W aplikacji można wyróżnić następujące funkcjonalności i odpowiadające im klasy:
 		\begin{spacing}{\spacingInSolemnItemize}
     		\begin{enumerate}
-    			\item ekstrakcja stron z pliku pdf do obrazów (jedna strona pliku pdf odpowiada jednemu obrazowi) -- klasa GetImgFromPdf;
-    			\item polepszenie jakości obrazu -- klasa ImproveImg;
-    			\item usunięcie z obrazu obszarów które nie należą do stron -- klasa CutBlackArea;
-    			\item podział obrazu na dwie strony -- klasa DivideToPage;
-    			\item przygotowanie obrazu do analizy poprzez budowę zbiorów linii -- klasa PrepareImgToAnalize;
-    			\item wyprostowanie obrazu -- klasa ToStraightenUp;
-    			\item zasadnicze przetwarzanie obrazu, detekcja obszarów zawierających znaki muzyczne i teksty -- klasa MajorProcessing; 
-    			\item wykrycie tekstu -- klasa DetectText;
-    			\item rozpoznanie oraz wycięcie konturów obrazu które tworzą litery, znaki interpunkcyjne, etc. -- klasa DetectLetter;
-    			\item  model, konfiguracja, uczenie się konwolucyjnych sieci neuronowych, odpowiednio klasyfikującej litery, linie czy jest linią tekstu czy nut -- klasa LetterClassifier i klasa MusicSheetClassifier;
-    			\item wykorzystanie zserializowanych konwolucyjnych sieci neuronowych w celu przetworzenia danych wejściowych i zwróceniu wyniku, odpowiednio tekstu, wartości logicznej -- klasa ReadLetterClassifier i klasa MusicSheetClassifierImg;
+    			\item ekstrakcja stron z pliku pdf do obrazów (jedna strona pliku pdf odpowiada jednemu obrazowi) -- klasa \textit{GetImgFromPdf};
+    			\item polepszenie jakości obrazu -- klasa \textit{ImproveImg};
+    			\item usunięcie z obrazu obszarów które nie należą do stron -- klasa \textit{CutBlackArea};
+    			\item podział obrazu na dwie strony -- klasa \textit{DivideToPage};
+    			\item przygotowanie obrazu do analizy poprzez budowę zbiorów linii -- klasa \textit{PrepareImgToAnalize};
+    			\item wyprostowanie obrazu -- klasa \textit{ToStraightenUp};
+    			\item zasadnicze przetwarzanie obrazu, detekcja obszarów zawierających znaki muzyczne i teksty -- klasa \textit{MajorProcessing}; 
+    			\item wykrycie tekstu -- klasa \textit{DetectText};
+    			\item rozpoznanie oraz wycięcie konturów obrazu które tworzą litery, znaki interpunkcyjne, etc. -- klasa \textit{DetectLetter};
+    			\item  model, konfiguracja, uczenie się konwolucyjnych sieci neuronowych, odpowiednio klasyfikującej litery, linie czy jest linią tekstu czy nut -- klasa \textit{LetterClassifier} i klasa \textit{MusicSheetClassifier};
+    			\item wykorzystanie zserializowanych konwolucyjnych sieci neuronowych w celu przetworzenia danych wejściowych i zwróceniu wyniku, odpowiednio tekstu, wartości logicznej -- klasa \textit{ReadLetterClassifier} i klasa \textit{MusicSheetClassifierImg};
     		\end{enumerate} 
         \end{spacing}
         \vspace{\spacingVspace}
         Szczegóły implementacyjne powyższych funkcjonalności zostały dokładniej opisane w kolejnych podrozdziałach. Wyjaśnienia oprócz schematów blokowych zawierają również listingi kodu w języku Java, który został podany w celu zwięźlejszego przedstawienia działania algorytmu.
 
-	\subsubsection{Ekstrakcja stron z plików pdf}
-		\hspace{\spacingIndent} Przy pomocy biblioteki Apache PDFBox dołączonej do projektu jako plik z rozszerzeniem jar, z plików pdf można pobrać strony konwertując je do kolorowych plików graficznych z określoną rozdzielczością -- Rysunek \ref{fig:fromPdf}. Metody które wykonują powyższe algorytmy zawarte są w klasie GetImgFromPdf.
+	\subsection{Ekstrakcja stron z plików pdf}
+		\hspace{\spacingIndent} Przy pomocy biblioteki Apache PDFBox dołączonej do projektu jako plik z rozszerzeniem jar, z plików pdf można pobrać strony konwertując je do kolorowych plików graficznych z określoną rozdzielczością -- Rysunek \ref{fig:fromPdf}. Metody które wykonują powyższe algorytmy zawarte są w klasie \textit{GetImgFromPdf}.
 
         %\newpage
         
 		\begin{figure}[!ht]  
 			\begin{center}
-				\includegraphics[height=15cm]{image//algorithm//getImgFromPdf.png}%[width=15cm, height=18cm] {image//algorithm//getImgFromPdf.png} 
+				\includegraphics[height=20cm]{image//algorithm//getImgFromPdf.png}%[width=15cm, height=18cm] {image//algorithm//getImgFromPdf.png} 
 			\end{center}
 			\caption
     			[Algorytm pobierania obrazów z plików pdf]  
@@ -526,10 +549,10 @@
 	    		\label{fig:fromPdf}
 		\end{figure}
 		\newpage
-		\subsubsection{Polepszenie jakości obrazów}
-			\hspace{\spacingIndent} Algorytmy polepszające jakość obrazu (Rysunek \ref{fig:betterImg}) zostały zaimplementowane w klasie           ImproveImg. Redukują szumy, dzięki wykorzystaniu metod rozmycia i        progowania udostępnionych przez bibliotekę OpenCv, które pracują na         obrazie wczytanym w skali szarości.  
+		\subsection{Polepszenie jakości obrazów}
+			\hspace{\spacingIndent} Algorytmy polepszające jakość obrazu (Rysunek \ref{fig:betterImg}) zostały zaimplementowane w klasie           \textit{ImproveImg}. Redukują szumy, dzięki wykorzystaniu metod rozmycia i        progowania udostępnionych przez bibliotekę OpenCV, które pracują na         obrazie wczytanym w skali szarości.  
 			
-			    Operacja rozmycia nosi również nazwę wygładzania, przyczyny wykonania zabiegu rozmycia na obrazie mogą być różne, w znaczącej większości przypadków powodem jest chęć usunięcia występujących szumów. Do wyboru (w bibliotece OpenCv) mamy kilka funkcji, posługujących się różnymi rodzajami filtrów dolnoprzepustowych, a więc wykorzystującymi różne jądra, będące de facto współczynnikami tych filtrów. Algorytm wykorzystuje funkcję:
+			    Operacja rozmycia nosi również nazwę wygładzania, przyczyny wykonania zabiegu rozmycia na obrazie mogą być różne, w znaczącej większości przypadków powodem jest chęć usunięcia występujących szumów. Do wyboru (w bibliotece OpenCV) mamy kilka funkcji, posługujących się różnymi rodzajami filtrów dolnoprzepustowych, a więc wykorzystującymi różne jądra, będące de facto współczynnikami tych filtrów. Algorytm wykorzystuje funkcję:
 			    \textit{Imgproc.medianBlur(src, dst, ksize);}
 			    gdzie \textit{ksize} jest rozmiarem jądra, które jest nieliniowe oraz:  
 			    
@@ -558,7 +581,7 @@
     		    
     		    \begin{figure}[!ht]  
     			    \begin{center}
-    			        \includegraphics[]{image//algorithm//improveImg.png}%[width=12cm, height=12cm] {image//algorithm//improveImg.png} 
+    			        \includegraphics[height=20cm]{image//algorithm//improveImg.png}%[width=12cm, height=12cm] {image//algorithm//improveImg.png} 
     			    \end{center}
     			    \caption
         			    [Algorytm polepszenia jakości obrazów]  
@@ -586,9 +609,9 @@
 	    		        {Obraz po zastosowaniu algorytmu}  
 	            \end{figure}
 		
-		\subsubsection{Eliminacja nadmiarowych (czarnych) obszarów skanu}
+		\subsection{Eliminacja nadmiarowych (czarnych) obszarów skanu}
 			\hspace{\spacingIndent} 
-			Algorytm wykrywający i usuwający czarne obszary skanu (uzupełnienie skanu do określonego formatu np. A4) (Rysunek \ref{fig:cutBlack}) zostały  zaimplementowane w klasie CutBlackArea. Algorytm wykorzystuje do tego           wartości odchylenia standardowego w poziomych liniach obrazu (Listing \ref{lst:calcStdDev}) i wartości     dominanty (na jej podstawie obliczając początek czarnego obszaru (Listing \ref{lst:calcFirstRowStdDev})). Przy założeniu, że powierzchnie te znajdują się po lewej         stronie i na dole obrazu. Algorytm umożliwia wycięcie jednego (dolnego)     lub obu obszarów. 
+			Algorytm wykrywający i usuwający czarne obszary skanu (uzupełnienie skanu do określonego formatu np. A4) (Rysunek \ref{fig:cutBlack}) zostały  zaimplementowane w klasie \textit{CutBlackArea}. Algorytm wykorzystuje do tego           wartości odchylenia standardowego w poziomych liniach obrazu (Listing \ref{lst:calcStdDev}) i wartości     dominanty (na jej podstawie obliczając początek czarnego obszaru (Listing \ref{lst:calcFirstRowStdDev})). Przy założeniu, że powierzchnie te znajdują się po lewej         stronie i na dole obrazu. Algorytm umożliwia wycięcie jednego (dolnego)     lub obu obszarów. 
 			
     			\begin{figure}[!ht]  
     			    \begin{center}
@@ -626,9 +649,9 @@
             			\label{fig:stdDevAndLine}
     		    \end{figure}
 			
-    			Na podstawie wykresu (Rysunek \ref{fig:stdDevAndLine}) można zauważyć, że wiersze obrazu (w skali szarości) o małej zmienności wartości pikseli, będą dawały niewielkie wartości odchylenia standardowego. Jeśli nie równa się ono zeru, ale jest odpowiednio małe można założyć, że badany wiersz ma jedną barwę, a wartość ta wynika z drobnych zakłóceń i niedoskonałości obrazu.
+    			Na podstawie wykresu (Rysunek \ref{fig:stdDevAndLine}) można zauważyć, że wiersze obrazu (w skali szarości) o małej zmienności wartości pikseli, będą dawały niewielkie wartości odchylenia standardowego. Jeśli nie równa się ono zeru, ale jest odpowiednio małe można założyć, że badany wiersz ma jedną barwę, a wartość ta wynika z drobnych zakłóceń i niedoskonałości obrazu.\\
     			
-    			Do obliczenia odchylenia standardowego została użyta funkcja udostępniona w bibliotece OpenCv:\textit {Core.meanStdDev(Mat src, MatOfDouble mean, MatOfDouble stddev)}. Oblicza ona średnią i odchylenie standardowe macierzy podanej jako parametr src (w algorytmie jest to jeden wiersz obrazu), które zależy od wszystkich kanałów macierzy. Tutaj jest to jeden kanał -- obraz przed obliczeniami został przetransformowany do skali szarości według poniższego algorytmu:
+    			Do obliczenia odchylenia standardowego została użyta funkcja udostępniona w bibliotece OpenCV:\textit { Core.meanStdDev(Mat src, MatOfDouble mean, MatOfDouble stddev)}. Oblicza ona średnią i odchylenie standardowe macierzy podanej jako parametr \textit{src} (w algorytmie jest to jeden wiersz obrazu), które zależy od wszystkich kanałów macierzy. Tutaj jest to jeden kanał -- obraz przed obliczeniami został przetransformowany do skali szarości według poniższego algorytmu:
 		 		\newline
 			    \lstinputlisting[caption=Metoda transformująca obraz barwny do skali szarości]{toGrayScale.java}		
     			 		
@@ -665,9 +688,9 @@
         			    {Obraz po przycięciu obszaru znajdującego się po lewej stronie} 
     		    \end{figure}
 
-		\subsubsection{Podział skanu na dwie strony}
+		\subsection{Podział skanu na dwie strony}
 		    \hspace{\spacingIndent} Algorytmy dzielące skan zawierający dwie strony śpiewnika na dwa osobne obraz, z których każdy stanowi jedną stronę
-		    zostały zaimplementowane w klasie DivideToPage (Rysunek \ref{fig:imgToTwo}). Algorytm wykorzystuje do tego niedoskonałość          skanu, który w książkach szczególnie tych o znacznej liczbie stron          odciska na ich łączeniu charakterystyczny czarny lub zaciemniony          obszar pionowy. Jeżeli wykrycie tego obszaru nie jest możliwe (niewielka    liczba przypadków) przyjęto założenie, że na cały obszar obrazu przypadają dwie strony śpiewnika i następnie zostaje on podzielony na dwie części gdzie granicą jest środkowa kolumna macierzy przechowującej obraz.    
+		    zostały zaimplementowane w klasie \textit{DivideToPage} (Rysunek \ref{fig:imgToTwo}). Algorytm wykorzystuje do tego niedoskonałość          skanu, który w książkach szczególnie tych o znacznej liczbie stron          odciska na ich łączeniu charakterystyczny czarny lub zaciemniony          obszar pionowy. Jeżeli wykrycie tego obszaru nie jest możliwe (niewielka    liczba przypadków) przyjęto założenie, że na cały obszar obrazu przypadają dwie strony śpiewnika i następnie zostaje on podzielony na dwie części gdzie granicą jest środkowa kolumna macierzy przechowującej obraz.    
 		    
     	        \begin{figure}[!ht]  
     			    \begin{center}
@@ -701,7 +724,7 @@
 		
 		        \newpage
 		
-		        Metoda podziału strony na dwie części korzysta z dwóch zasadniczych funkcji zaimplementowanych w bibliotece OpenCv -- detektora krawędzi Canny'ego oraz transformacji (liniowej) Hougha. Algorytmy te ze względu na osiąganie dobrych efektów są powszechnie wykorzystywane z zagadnieniu przetwarzania obrazów.
+		        Metoda podziału strony na dwie części korzysta z dwóch zasadniczych funkcji zaimplementowanych w bibliotece OpenCV -- detektora krawędzi Canny'ego oraz transformacji (liniowej) Hougha. Algorytmy te ze względu na osiąganie dobrych efektów są powszechnie wykorzystywane z zagadnieniu przetwarzania obrazów.
 		
 		        %Detektor krawędzi Canny'ego 
 		        %jest to polepszony filtr Laplace'a. Zasadniczym udoskonaleniem tej metody jest część, w której pojedyncze piksele wytypowane na elementy krawędzi zostają scalone w kontury. Zachodzi to dzięki zastosowaniu metody progowania z histerezą \textit{(ang. hysteresis threshold)}. Metoda ta opiera się na zdefiniowaniu progów dolnego i górnego, następnie przyporządkowaniu gradientu piksela. W zależności od zakwalifikowania piksela w przedziale ograniczonym progami zostaje on odrzucony (poniżej dolnego progu), zaliczony do krawędzi( powyżej górnego progu) i jeśli wartość gradientu piksela znajduje się w przedziale zostaję zaliczony jeśli styka się z pikselem który jest na pewno zaliczony do krawędzi (przekracza próg górny) w przeciwnym wypadku zostaje odrzucony. Rekomendowane proporcje między progami to 2:1 i 3:1. \par
@@ -717,7 +740,7 @@
 		        
 		        Algorytm ten składa się z kilku kroków. Pierwszym z nich jest wygładzanie, które odbywa się przez rozmycie filtrem Gausa (konwolucja). Następnie dla każdego z pikseli obrazu wyznaczany jest gradient, do operacji tej używane są filtry gradientowe, następnie dla każdego z pikseli obrazu ustalana jest wartość i kierunek gradientu. Kolejnym krokiem jest zerowanie (eliminacja) pikseli o niemaksymalnych wartościach gradientu. Ostatnim etapem jest progowanie z histerezą. Metoda ta (progowania z histerezą) opiera się na zdefiniowaniu dwóch progów dolnego i górnego. Później przyporządkowany jest gradient piksela w zależności od zakwalifikowania go w przedziale ograniczonym progami. Piksel może zostać odrzucony jeśli jego wartość nie przekracza dolnego progu, zaliczony do krawędzi jeśli jego wartość przekracza wartość progu górnego. Zaś jeśli wartość gradientu piksela znajduje się w przedziale ograniczonym progami to jeśli styka się z pikselem którego wartość gradientu przekracza górny próg to zaliczany jest do krawędzi w przeciwnym wypadku zostaje odrzucony. Zaleca się następujące proporcje między progami 2:1, 3:1.
 		
-        		Biblioteka OpenCv dostarcza kilka możliwości (kilka funkcji) detekcji kształtów na obrazie, jedną z nich jest transformacja liniowa Hougha. U podstaw tej metody leży obserwacja, że wszelkie punkty obrazu binarnego mogą być częścią pewnego zbioru prostych, zdefiniowanych przy użyciu dwóch parametrów: kąta nachylenia prostej a i punktu w którym przecina się z osią b. 
+        		Biblioteka OpenCV dostarcza kilka możliwości (kilka funkcji) detekcji kształtów na obrazie, jedną z nich jest transformacja liniowa Hougha. U podstaw tej metody leży obserwacja, że wszelkie punkty obrazu binarnego mogą być częścią pewnego zbioru prostych, zdefiniowanych przy użyciu dwóch parametrów: kąta nachylenia prostej a i punktu w którym przecina się z osią b. 
 		        Ponieważ zastosowanie takiego podejścia (płaszczyzny akumulacyjnej (a, b)) nie daje najlepszych rezultatów, ze względu na zakres kąta nachylenia będącego w przedziale $(-\infty, +\infty)$, praktyczniejsze zastosowanie znajduje metoda przedstawienia prostej wykorzystująca współrzędne biegunowe (p, $\theta$). Wtedy wyznaczana linia przechodzi przez badany punkt i jest prostopadła do prostej określonej wzorem:
 		        \begin{center}
 		        $\rho = x \cos \theta + y \sin \theta$ 
@@ -728,9 +751,9 @@
 		        W algorytmie została wykorzystana ta trzecia, dająca najlepsze efekty biorąc pod uwagę czas obliczeń i dokładność algorytmu. Dodatkowymi zaletami użycia metody:\\ \textit {Imgproc.HoughLinesP(srcImg, lines, rho, theta, threshold, minLineLength, maxLineGap);}\\
 		        są argumenty \textit{minLineLength} - minimalna długość linii, \textit{maxLineGap} - wymagany odstęp pomiędzy współliniowymi odcinkami, również macierz wynikowa \textit{lines} posiada cztery kolumny, które odpowiadają współrzędnym początku i końca linii (w następującej kolejności $ x_0, y_0, x_1, y_1 $).
 		
-		\subsubsection{Zasadnicze przygotowanie obrazu do analizy}
+		\subsection{Zasadnicze przygotowanie obrazu do analizy}
 	        \hspace{\spacingIndent} 
-	        Kluczowe algorytmy analizujące obraz zostały zaimplementowane w klasie PrepareImgToAnalize mają one za zadanie pozyskać pożądane (określone przez parametry) właściwości obrazu, głównie jest to wyznaczenie zbioru     linii (Rysunek \ref{fig:searchHorizontalLine}). Wywołanie metody tej klasy \textit{houghLines(boolean)} buduje zbiór          punktów  które tworzą linie. Punkty są łączone w klastry, dany klaster      jest jedną linią i zwracana jest lista tych klastrów, linii (Rysunek \ref{fig:makeClaster}). Argument       logiczny decyduje czy bada się dodatkowo długość linii.
+	        Kluczowe algorytmy analizujące obraz zostały zaimplementowane w klasie \textit{PrepareImgToAnalize} mają one za zadanie pozyskać pożądane (określone przez parametry) właściwości obrazu, głównie jest to wyznaczenie zbioru     linii (Rysunek \ref{fig:searchHorizontalLine}). Wywołanie metody tej klasy \textit{houghLines(boolean)} buduje zbiór          punktów  które tworzą linie. Punkty są łączone w klastry, dany klaster      jest jedną linią i zwracana jest lista tych klastrów, linii (Rysunek \ref{fig:makeClaster}). Argument       logiczny decyduje czy bada się dodatkowo długość linii.
     		    
     			\begin{figure}[!ht]  
     		        \begin{center}
@@ -751,17 +774,17 @@
             			{Algorytm budujący listę klastrów}  \label{fig:makeClaster}
     		    \end{figure}
 		        \newpage
-		        Algorytm wykorzystuje zasadnicze przekształcenia morfologiczne udostępnione w bibliotece OpenCv -- dylatacje i erozje, które mają szerokie zastosowanie w zagadnieniu przetwarzania obrazów. 
+		        Algorytm wykorzystuje zasadnicze przekształcenia morfologiczne udostępnione w bibliotece OpenCV -- dylatacje i erozje, które mają szerokie zastosowanie w zagadnieniu przetwarzania obrazów. 
 		        
 		        Dylatacja jest to konwolucja obrazu i jądra, w której wszystkie piksele zostają zastąpione na lokalne maksimum każdego z pikseli, które obejmuje jądro. Jest to operacja nieliniowa, która powoduje rozrastanie się jasnego obszaru i zazwyczaj powoduje wypełnienie zagłębień przy przyjęciu założenia, że jądro jest jądrem wypukłym i wypełnionym. 
 		        
     		    Erozja jest to operacja przeciwna do operacji dylatacji, a więc piksele zostają zastąpione na lokalne minimum, jest to również operacja nieliniowa, która powoduje zmniejszenie się czarnego obszaru oraz usuwa wypukłości, przy tych samych założeniach.
 		    
-		\subsubsection{Wyprostowanie strony}		
+		\subsection{Wyprostowanie strony}		
 		    \hspace{\spacingIndent} 
-		    Metody klasy ToStraightenUp pomagają zniwelować w pewnym stopniu wpływ      ludzki na jakość przetwarzania obrazu. Umożliwiają one wyprostowanie        danego zdjęcia jeśli zostało ono niewłaściwie, krzywo umieszczone na      skanerze (Rysunek \ref{fig:straightenUp}). Klasa ta wykorzystuje również metody klasy PrepareImgToAnalize     dzięki której buduje zbiór linii, z których każda ma taką podobną           współrzędną y--kową początku i końca. I na podstawię średniej z różnic     tej współrzędnej wykrytych linii określany jest kąt o jaki należy        obrócić obraz, tak aby został on wyprostowany (Listing \ref{lst:calculateAngle}).  
+		    Metody klasy \textit{ToStraightenUp} pomagają zniwelować w pewnym stopniu wpływ      ludzki na jakość przetwarzania obrazu. Umożliwiają one wyprostowanie        danego zdjęcia jeśli zostało ono niewłaściwie, krzywo umieszczone na      skanerze (Rysunek \ref{fig:straightenUp}). Klasa ta wykorzystuje również metody klasy \textit{PrepareImgToAnalize}     dzięki której buduje zbiór linii, z których każda ma taką podobną           współrzędną y--kową początku i końca. I na podstawię średniej z różnic     tej współrzędnej wykrytych linii określany jest kąt o jaki należy        obrócić obraz, tak aby został on wyprostowany (Listing \ref{lst:calculateAngle}).  
 		
-		        Algorytm wykorzystuje funkcję zaimplementowaną w bibliotece OpenCv przekształcającą obraz. Jest to funkcja przekształcenia afinicznego:
+		        Algorytm wykorzystuje funkcję zaimplementowaną w bibliotece OpenCV przekształcającą obraz. Jest to funkcja przekształcenia afinicznego:
     		    \begin{center}
     		        \textit{Imgproc.warpAffine(srcImg, dstImg, M, dsize);}.
     		    \end{center}
@@ -843,10 +866,10 @@
 		
 		        \newpage 
 		 
-	    \subsubsection{Główne przetwarzanie obrazu}
+	    \subsection{Główne przetwarzanie obrazu}
 		    \hspace{\spacingIndent}  
 		    Tak przygotowany obraz jest już wystarczająco przysposobiony, aby można było wykryć linie zawierające tekst oraz te zawracające nuty.
-		    Metody klasy MajorProcessing, w której zostały zaimplementowane algorytmy również używają metod klasy PrepareimgToAnalize. Wykryte linie transformatą Hougha zostają     pogrupowane w zbiory tworzące pięciolinie. Odpowiednio w zależności od      budowy śpiewnika z jedna pięciolinią (klucz wiolinowy) z tekstem            umieszczonym pod nią lub z dwiema pięcioliniami oraz tekstem umieszczonym     pomiędzy nimi. Następnie wykryte pięciolinie zostają zamarkowane             utwarzając bounding boxy i wraz z tekstem znajdującym się pod lub między     nimi wycięte z obrazu i zapisane do osobnych plików czy macierzy            przechowujących obrazy (Rysunek \ref{fig:boundingBox01}, \ref{fig:boundingBox02}, \ref{fig:boundingBox03}), a więc przygotowane do dalszego przetworzenia i     ostatecznego uzyskania z nich tekstu.
+		    Metody klasy \textit{MajorProcessing}, w której zostały zaimplementowane algorytmy również używają metod klasy \textit{PrepareimgToAnalize}. Wykryte linie transformatą Hougha zostają     pogrupowane w zbiory tworzące pięciolinie. Odpowiednio w zależności od      budowy śpiewnika z jedna pięciolinią (klucz wiolinowy) z tekstem            umieszczonym pod nią lub z dwiema pięcioliniami oraz tekstem umieszczonym     pomiędzy nimi. Następnie wykryte pięciolinie zostają zamarkowane             utwarzając bounding boxy i wraz z tekstem znajdującym się pod lub między     nimi wycięte z obrazu i zapisane do osobnych plików czy macierzy            przechowujących obrazy (Rysunek \ref{fig:boundingBox01}, \ref{fig:boundingBox02}), a więc przygotowane do dalszego przetworzenia i     ostatecznego uzyskania z nich tekstu.
 		
 			\begin{figure}[!ht]  
 			    \begin{center}
@@ -862,7 +885,7 @@
 			
 	        \begin{figure}[!ht]  
 			    \begin{center}
-				    \includegraphics[height=23cm] {image//algorithm//majorProcesing_02.png} 
+				    \includegraphics[height=23cm] {image//algorithm//majorProcesingv2_02.png} 
 			    \end{center}
 			    \caption
     			    [Główny algorytm budujący bounding boxy cz. 2]  
@@ -870,19 +893,19 @@
     			    \label{fig:boundingBox02}
 		    \end{figure} 
 		
-		    \begin{figure}[!ht]  
-			    \begin{center}
-				    \includegraphics[height=8cm] {image//algorithm//majorProcesing_03.png} 
-			    \end{center}
-			    \caption
-    			    [Główny algorytm budujący bounding boxy cz. 3]
-    			    {Główny algorytm budujący bounding boxy cz. 3}  
-    			    \label{fig:boundingBox03}
-		    \end{figure} 
+		    %\begin{figure}[!ht]  
+			%    \begin{center}
+			%	    \includegraphics[height=8cm] %{image//algorithm//majorProcesing_03.png} 
+			%    \end{center}
+			%   \caption
+    		%	    [Główny algorytm budujący bounding boxy cz. 3]
+    	   	%	    {Główny algorytm budujący bounding boxy cz. 3}  
+    		%	    \label{fig:boundingBox03}
+		    %\end{figure} 
 		
     		\begin{figure}[!ht]  
 			    \begin{center}
-				    \includegraphics[height=13cm, frame] {image//exampleImage//004_a.png} 
+				    \includegraphics[height=11cm, frame] {image//exampleImage//004_a.png} 
 			    \end{center}
 			    \caption
     			    [Obraz przed wykryciem pięciolinii]  
@@ -891,19 +914,19 @@
 		
 		    \begin{figure}[!ht]  
 			    \begin{center}
-				    \includegraphics[height=15cm, frame] {image//exampleImage//004_b.png} 
+				    \includegraphics[height=11cm, frame] {image//exampleImage//004_b.png} 
 			    \end{center}
 			    \caption
     			    [Obraz po wykryciu pięciolinii]  
     			    {Obraz po wykryciu pięciolinii}  
 		    \end{figure} 
 		
-		\subsubsection{Konfiguracja sieci neuronowej klasyfikującej linię}  
+		\subsection{Konfiguracja sieci neuronowej klasyfikującej linię}  
 		\label{subsubsection:cnnLineText}
 	        \hspace{\spacingIndent}  
-	        Model konwolucyjnej sieci neuronowej, który klasyfikuje obrazy wejściowe na te zawierające tekst i te zawierające linie muzyczne (Listing \ref{lst:cnnLine}) został zawarty w klasie MusicSheetClassifier. Dane na których sieć się uczy zostały wcześniej przygotowane jako jednokanałowe zdjęcia o rozmiarach 600px x 15px.
+	        Model konwolucyjnej sieci neuronowej, który klasyfikuje obrazy wejściowe na te zawierające tekst i te zawierające linie muzyczne (Listing \ref{lst:cnnLine}) został zawarty w klasie \textit{MusicSheetClassifier}. Dane na których sieć się uczy zostały wcześniej przygotowane jako jednokanałowe zdjęcia o rozmiarach 600px x 15px.
 	        
-	        \newpage
+	        %\newpage
 		
     		%\begin{figure}[!ht]  
 	    	%    \begin{center}
@@ -917,18 +940,33 @@
     		%    \end{center}
 		    %\end{figure}  
 		    \lstinputlisting[caption={Konfiguracja sieci neuronowej klasyfikującej linię}, label={lst:cnnLine}]{cnnMusicSheet.java}
-            \begin{spacing}{\spacingInSolemnItemize}
-		    \begin{center}
-                \begin{tabular}{c c c }
-                    \# of classes: & liczba klas & 2 \\
-                    Accuracy:  & dokładność &0,9806  \\ 
-                    Precision:  & precyzja & 0,9768 \\  
-                    Recall: & wycofanie & 0,9808      \\
-                    F1 Score: & rezultat f1 & 0,9851 \\
-                     &  & 
+            
+            %\begin{spacing}{\spacingInSolemnItemize}
+		    %\begin{center}
+    %             \begin{tabular}{c c c }
+                
+    %                 \# of classes: & liczba klas & 2 \\
+    %                 Accuracy:  & dokładność &0,9806  \\ 
+    %                 Precision:  & precyzja & 0,9768 \\  
+    %                 Recall: & wycofanie & 0,9808      \\
+    %                 F1 Score: & rezultat f1 & 0,9851 \\
+    %                  &  & 
+    %             \end{tabular}
+    %         \end{center}
+		  %  \end{spacing}
+            \begin{table}[h!]
+            \centering
+                \begin{tabular}{|c| c| c|} 
+                 \hline
+                 \# of classes: & liczba klas & 2\\  \hline
+                 Accuracy: & dokładność & 0,9806\\ \hline
+                 Precision: & precyzja & 0,9768\\ \hline
+                 Recall: & wycofanie & 0,9808\\ \hline
+                 F1 Score: & rezultat f1 & 0,9851\\ \hline
                 \end{tabular}
-            \end{center}
-		    \end{spacing}
+                \caption{Wyniki procesu uczenia konwolucyjnej sieci neuronowej}
+                \label{table:01}
+            \end{table}
 		    
 		    Właściwie przygotowane zbiory uczące pozwalają osiągnąć sieci bardzo dobre wyniki. Nieco gorsze wyniki sieć uzyskuje pracując na obrazach przekazanych przez algorytm budujący klastry. Może to być spowodowane koniecznością zmiany rozmiarów obrazów i pogorszeniu ich jakości. Rozwiązaniem tego problemu będzie ponowne przygotowanie zbioru obrazów uczących o zbliżonych rozmiarach do tych ze skanów śpiewników. Aktualnie sieć odgrywa drugoplanową rolę w algorytmie, jedynie go wspomagając. Polepszenie jej działania i niezawodności pozwoli na modyfikacje algorytmu tak aby klasyfikacja wykonywana przez sieć miała większa role niż dotychczas.
 		    
@@ -939,9 +977,9 @@
 %                \item DenseLayer.Builder() - warstwa przetwarzająca wszzystkie wyniki z warstwy poprzedniej; 
                 %\item OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD) - wyjściowa warstwa ukryta z okreslona funkcja straty.
 		
-		\subsubsection{Detekcja tekstu} 		
+		\subsection{Detekcja tekstu} 		
 			\hspace{\spacingIndent}  
-			Powstałe w wyniku poprzednich algorytmów obrazy mogą zostać dalej przetwarzane tak aby zbudowane dotychczas boundung boxy zostały maksymalnie rozszerzone. Operacje ta została zaimplementowana w klasie DetectText. 
+			Powstałe w wyniku poprzednich algorytmów obrazy mogą zostać dalej przetwarzane tak aby zbudowane dotychczas boundung boxy zostały maksymalnie rozszerzone. Operacje ta została zaimplementowana w klasie \textit{DetectText}. 
 			Algorytm wykorzystuje do tego wartości odchylenia standardowego, co       umożliwia praktycznie całkowite usunięcie znaków muzycznych (nut i        pięciolinii). Obszar w którym prawdopodobnie znajduje się tekst
 			zostaje     wycięty i jest obrazem wejściowym dla konwolucyjnej sieci neuronowej (opisanej w podrozdziale \ref{subsubsection:cnnLineText})       która podejmuje decyzje czy jest on linią tekstu czy nut. Jeśli sieć        zwróci wartość pozytywną (obraz jest tekstem; prawdopodobieństwo większe     niż 0.9), zostaje on wycięty i poddany dalszej obróbce, zaś jeśli sieć       zwróci wartość negatywną (obraz nie jest tekstem; prawdopodobieństwo        mniejsze lub równe 0.9) dalszemu przetwarzaniu zostaje poddany cały         obraz.  
 
@@ -975,8 +1013,8 @@
 		    
 		    Na podstawie wykresu (Rysunek \ref{fig:stdDevLineTex}) można zauważyć ze tekst znajduje się pomiędzy dwoma większymi obszarami o wartościach zerowych, dokładniej pomiędzy liniami od około 240 do około 270, odchylenie standardowe wierszy zawierających tekst waha się w zakresie od około 95 do około 105. Obszar pomiędzy tekstem a zamarkowanymi pięcioliniami ma niezbyt duże odchylenie standardowe ponieważ mogą się w tych liniach znajdować nuty dodane, ogonki nut jednak nie będzie ich nigdy zbyt wiele i rozrzut w tych liniach nie będzie większy od rozrzutu w liniach w których znajdują się litery.
 
-        \subsubsection{Detekcja i wycięcie liter}
-            \hspace{\spacingIndent} Aby odczytać zawarty na obrazie tekst konieczna jest rozpoznanie pojedynczych znaków i ich odpowiednie przechowanie (właściwa kolejność).            Algorytmy klasy DetectLetter wykrywają krawędzie w obrazie wejściowym,     następnie grupują je w zbiory o taki samych współrzędnych x-owych, dzięki    czemu jedna grupa konturów stanowi jeden znak (literę, znak                 interpunkcyjny, etc.), grupy są sortowane rosnąco według współrzędnych      x-owych. Z każdego zbioru konturów zostają wyznaczone skrajne współrzędne    $ max_{x} , min_{x}, max_{y}, min_{y} $. Na podstawie tych wartości z       obrazu wejściowego zostaje wycięty kontur zawierający się w tym             prostokącie. Tak wyciętemu obrazowi zostaje nadana jednoznaczna nazwa       według jego indeksu w zbiorze posortowanym, według rosnącego rozmieszczenia na osi OX obrazu. 
+        \subsection{Detekcja i wycięcie liter}
+            \hspace{\spacingIndent} Aby odczytać zawarty na obrazie tekst konieczna jest rozpoznanie pojedynczych znaków i ich odpowiednie przechowanie (właściwa kolejność).            Algorytmy klasy \textit{DetectLetter} wykrywają krawędzie w obrazie wejściowym,     następnie grupują je w zbiory o taki samych współrzędnych x-owych, dzięki    czemu jedna grupa konturów stanowi jeden znak (literę, znak                 interpunkcyjny, etc.), grupy są sortowane rosnąco według współrzędnych      x-owych. Z każdego zbioru konturów zostają wyznaczone skrajne współrzędne    $ max_{x} , min_{x}, max_{y}, min_{y} $. Na podstawie tych wartości z       obrazu wejściowego zostaje wycięty kontur zawierający się w tym             prostokącie. Tak wyciętemu obrazowi zostaje nadana jednoznaczna nazwa       według jego indeksu w zbiorze posortowanym, według rosnącego rozmieszczenia na osi OX obrazu. 
     
             \begin{figure}[h!]
                 \centering
@@ -1003,11 +1041,11 @@
                 %\label{}
             \end{figure}
 
-        \subsubsection{Konfiguracja sieci neuronowej klasyfikującej litery}
+        \subsection{Konfiguracja sieci neuronowej klasyfikującej litery}
             \hspace{\spacingIndent}  
-            Do klasyfikacji liter została użyta konwolucyjna sieć neuronowa której model znajduje się w klasie LetterClassifier (Listing \ref{lst:cnnLetter}). Sieć  
-            uczy się rozpoznawać litery abecadła, w tym również polskich znaków     diakrytycznych, majuskuł i minuskuł (łącznie 64 znaki, klasy), na           podstawie wcześniej przygotowanych jednokanałowych zdjęć,     o rozmiarach 50px x 25px, Konfiguracja sieci różni się od poprzedniej (Listing \ref{lst:cnnLine})    jedynie kilkoma parametrami i dodatkowymi dwoma warstwami:                  ConvolutionLayer.Builder(x, y) i  SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX).
-	       \newline
+            Do klasyfikacji liter została użyta konwolucyjna sieć neuronowa której model znajduje się w klasie \textit{LetterClassifier} (Listing \ref{lst:cnnLetter}). Sieć  
+            uczy się rozpoznawać litery abecadła, w tym również polskich znaków     diakrytycznych, majuskuł i minuskuł (łącznie 64 znaki, klasy), na           podstawie wcześniej przygotowanych jednokanałowych zdjęć,     o rozmiarach 50px x 25px, Konfiguracja sieci różni się od poprzedniej (Listing \ref{lst:cnnLine})    jedynie kilkoma parametrami i dodatkowymi dwoma warstwami:                  \textit{ConvolutionLayer.Builder(x, y)} i  \textit{SubsamplingLayer.Builder (SubsamplingLayer.PoolingType.MAX)}.
+	       \newpage
 	       \lstinputlisting[caption={Konfiguracja sieci neuronowej klasyfikującej litery}, label={lst:cnnLetter}]{cnnLetter.java}
 	            %\begin{figure}[!ht]  
 	    	    %    \begin{center}
@@ -1020,18 +1058,32 @@
     			%        \includegraphics[width=15cm, frame] %{image//practicalPart//cnnConf_02.png} 
     		    %    \end{center}
 		        %\end{figure}            
-            \begin{spacing}{\spacingInSolemnItemize}
-                \begin{center}
-                \begin{tabular}{ c c c  }
-                    \# of classes: &  liczb klas & 64 \\
-                    Accuracy:  & dokładność & 0,7387  \\ 
-                    Precision:  & precyzja & 0,7098 \\  
-                    Recall: & wycofanie & 0,5776      \\
-                    F1 Score: & rezultat f1 & 0,6347 \\
-                     &  &  
+            % \begin{spacing}{\spacingInSolemnItemize}
+            %     \begin{center}
+            %     \begin{tabular}{ c c c  }
+            %         \# of classes: &  liczb klas & 64 \\
+            %         Accuracy:  & dokładność & 0,7387  \\ 
+            %         Precision:  & precyzja & 0,7098 \\  
+            %         Recall: & wycofanie & 0,5776      \\
+            %         F1 Score: & rezultat f1 & 0,6347 \\
+            %          &  &  
+            %     \end{tabular}
+            %     \end{center}
+            % \end{spacing}
+            
+            \begin{table}[h!]
+            \centering
+                \begin{tabular}{|c| c| c|} 
+                 \hline
+                 \# of classes: & liczba klas & 64\\  \hline
+                 Accuracy: & dokładność & 0,7387\\ \hline
+                 Precision: & precyzja & 0,7098\\ \hline
+                 Recall: & wycofanie & 0,5776\\ \hline
+                 F1 Score: & rezultat f1 & 0,6347\\ \hline
                 \end{tabular}
-                \end{center}
-            \end{spacing}
+                \caption{Wyniki procesu uczenia konwolucyjnej sieci neuronowej}
+                \label{table:02}
+            \end{table}
             
              Trening sieci neuronowej daje dość zadowalające wyniki. Sieć bardzo dobrze rozpoznaje (zwraca wysokie prawdopodobieństwo > 0.9) pojedyncze litery podobne do tych ze zbioru na którym się uczy. Podczas pracy ze zbiorem danych ze śpiewników nie zawsze algorytm rozpoznawania konturów pojedynczych liter zwraca zadowalające wyniki, często gdy kontury liter zachodzą na siebie zwraca kilka liter w jednym obrazie lub dodatkowych znaków co uniemożliwia poprawne rozpoznanie przez sieć. 
 
@@ -1060,8 +1112,8 @@
                 %\label{}
             \end{figure}
 
-        \subsubsection{Klasyfikacja odczytanych liter}
-	        \hspace{\spacingIndent} Algorytmy klasy ReadLetterClassifier odczytują przygotowany     przez klasę DetectLetter obraz zawierający znak, następnie obraz ten zostaje analizowany przez system OCR Tesseract oraz konwolucyjną sieć       neuronową. Wybranie najbardziej prawdopodobnej litery odbywa się przez      porównanie wyniku zwróconego przez system OCR i trzech największych         prawdopodobieństw zwróconych przez sieć. Tak odczytany cały wykryty         tekst znajdujący się na stronie zostaje zapisany do pliku tekstowego.
+        \subsection{Klasyfikacja odczytanych liter}
+	        \hspace{\spacingIndent} Algorytmy klasy \textit{ReadLetterClassifier} odczytują przygotowany     przez klasę \textit{DetectLetter} obraz zawierający znak, następnie obraz ten zostaje analizowany przez system OCR Tesseract oraz konwolucyjną sieć       neuronową. Wybranie najbardziej prawdopodobnej litery odbywa się przez      porównanie wyniku zwróconego przez system OCR i trzech największych         prawdopodobieństw zwróconych przez sieć. Tak odczytany cały wykryty         tekst znajdujący się na stronie zostaje zapisany do pliku tekstowego.
 	        
 	            Przykładowy odczytany tekst: \textbf{Nie wiem czy jednak umieszczać ten przykładowy tekst :)}
 	        
@@ -1072,7 +1124,7 @@
 	        
 	        
 	        
-        \subsubsection{Graficzny interfejs użytkownika}
+        \subsection{Graficzny interfejs użytkownika}
 	        \begin{figure}[h!]
                 \centering
                 \begin{subfigure}[b]{0.47\linewidth}
@@ -1107,47 +1159,70 @@
 	   
 	   Kolejnym z celów pracy, który został zrealizowany to budowa graficznego interfejsu użytkownika, wybrana technologia i architektura systemu umożliwiła dość proste przejście z aplikacji konsolowej do aplikacji posiadającej prosty interfejs graficzny. Aplikacja może, a nawet powinna być rozwijana również w kierunku budowy bardziej rozbudowanego GUI, umożliwiającego użytkownikowi dobór parametrów (dla algorytmów) dla wybranego pliku poprzez udostępnienie rezultatów poszczególnych algorytmów w czasie rzeczywistym.
 	   
-	   Dzięki pracy nad budową aplikacji mogłem rozwinąć swoje zdolności algorytmiczne i programistyczne. Zapoznanie się z podstawami teoretycznymi systemów przetwarzających tekst, działania sztucznych sieci neuronowych, algorytmów przetwarzających obrazy oraz z narzędziami związanymi z tymi zagadnieniami -- Tesseract, OpenCv, DL4J pozwoliło autorowi na zdobycie i rozwój swojej wiedzy i umiejętności. \textbf{Umiejętności zdobyte podczas pisania pracy dyplomowej będą stanowiły ciekawą pozycję dla przyszłych pracodawców. \textit{nie wiem jak to lepiej ując ze to calkiem ciekawie moze sie prezentowac w cv}}
+	   Dzięki pracy nad budową aplikacji mogłem rozwinąć swoje zdolności algorytmiczne i programistyczne. Zapoznanie się z podstawami teoretycznymi systemów przetwarzających tekst, działania sztucznych sieci neuronowych, algorytmów przetwarzających obrazy oraz z narzędziami związanymi z tymi zagadnieniami -- Tesseract, OpenCV, DL4J pozwoliło autorowi na zdobycie i rozwój swojej wiedzy i umiejętności.
+	   
+	   Horyzont zastosowań sztucznej inteligencji nieustannie odkrywa przed osobami zajmującymi się tym zagadnieniem nowe wody. Na przestrzeni lat wąskie przeznaczenie sztucznej inteligencji znacząco się zwiększyło i dziś znajduje użytek w wielu dziedzinach życia. Taki wzrost znaczenia sztucznej inteligencji pociąga za sobą wzrostu zapotrzebowania na specjalistów zajmujących się uczeniem maszynowy. Dzisiejszy rynek pracy bardzo ceni i poszukuje takich osób. Zagadnienia poruszane przeze mnie w pracy dyplomowej niewątpliwie będą stanowiły cenna umiejętność podczas poszukiwań przyszłej pracy zawodowej. \phantom{\cite{songBook01, songBook02, bookOpenCV, bookDL}}
+	   
+	   
 	   
 	   \newpage
-	   \section{Bibliografia}
-	   \subsubsection*{Źródła książkowe:}
-	   \begin{spacing}{1.5}
-	   \begin{itemize}
-	        \item Rączkowski F., Śpiewajmy Bogu, Płock, Hejnał, 2012;
-	        \item Siedlecki J., Śpiewnik kościelny, Wyd. XL (poprawione), Kraków,
-	        Instytut Teologiczny Księży Misjonarzy, 2011;
-	        \item Kaehler A., Bradski G., OpenCV 3. Komputerowe rozpoznawanie obrazu w C++ przy użyciu biblioteki OpenCV, Gliwice, Helion, 2017;
-	        \item Shanmugamani R., Deep Learning for Computer Vision, Birmingham, Packt Publishing, 2018
-	   \end{itemize}
-	   \end{spacing}
-	   
-	   \subsubsection*{Źródła internetowe:}
-	   Data dostępu 2018.07.15
-	   \begin{spacing}{1}
-	   \begin{itemize}
-            \item \href{https://opencv.org}{\url{https://opencv.org}}
-            \item \href{https://docs.opencv.org//3.1.0//index.html}{\url{https://docs.opencv.org//3.1.0//index.html}}
-            \item \href{https://docs.opencv.org//java//3.1.0}{\url{https://docs.opencv.org//java//3.1.0}}
-            
-            \item \href{http://tess4j.sourceforge.net}{\url{http://tess4j.sourceforge.net}}
-            
-            \item \href{https://deeplearning4j.org//index.html}{\url{https://deeplearning4j.org//index.htmlt}}
-            \item \href{https://nd4j.org//doc}{\url{https://nd4j.org//doc}}
-            \item \href{https://depiesml.wordpress.com//category//deeplearning4j}{\url{https://depiesml.wordpress.com//category//deeplearning4j}}
 
-            \item \href{https://ksopyla.com//python//operacja-splotu-przetwarzanie-obrazow}{\url{https://ksopyla.com//python//operacja-splotu-przetwarzanie-obrazow}}
-            \item \href{https://github.com//Kulbear//deep-learning-nano-foundation//wiki//ReLU-and-Softmax-Activation-Functions}{\url{https://github.com//Kulbear//deep-learning-nano-foundation//wiki}}
+        \addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+        \begin{thebibliography}{99}
+            
+            \subsection{Źródła książkowe:}
+            \bibitem{1} 
+            Rączkowski F., \textit{Śpiewajmy Bogu}, Płock, Hejnał, 2012
+ 
+            \bibitem{2} 
+            Siedlecki J., \textit{Śpiewnik kościelny}, Wyd. XL (poprawione), Kraków,
+            Instytut Teologiczny Księży Misjonarzy, 2011.
+        
+            \bibitem{3} 
+            Kaehler A., Bradski G., OpenCV 3. \textit{Komputerowe rozpozn1awanie obrazu w C++ przy użyciu biblioteki OpenCV}, Gliwice, Helion, 2017.
+            
+            \bibitem{4} 
+            Shanmugamani R., \textit{Deep Learning for Computer Vision}, Birmingham, Packt Publishing, 2018
+
+            \subsection{Źródła internetowe:}
+            Data dostępu 2018.07.15
+            \bibitem{5} 
+            \href{https://opencv.org}{\url{https://opencv.org}}.
+            
+            \bibitem{6}    
+            \href{https://docs.opencv.org//3.1.0//index.html}{\url{https://docs.opencv.org//3.1.0//index.html}}.
+            
+            \bibitem{7}
+            \href{https://docs.opencv.org//java//3.1.0}{\url{https://docs.opencv.org//java//3.1.0}}.
+            
+            \bibitem{8}    
+            \href{http://tess4j.sourceforge.net}{\url{http://tess4j.sourceforge.net}}.
+            
+            \bibitem{9}    
+            \href{https://deeplearning4j.org//index.html}{\url{https://deeplearning4j.org//index.htmlt}}.
+            
+            \bibitem{10}
+            \href{https://nd4j.org//doc}{\url{https://nd4j.org//doc}}.
+            
+            \bibitem{11}
+            \href{https://depiesml.wordpress.com//category//deeplearning4j}{\url{https://depiesml.wordpress.com//category//deeplearning4j}}.
+    
+            \bibitem{12}
+            \href{https://ksopyla.com//python//operacja-splotu-przetwarzanie-obrazow}{\url{https://ksopyla.com//python//operacja-splotu-przetwarzanie-obrazow}}.
+                
+            \bibitem{13}    
+            \href{https://github.com//Kulbear//deep-learning-nano-foundation//wiki//ReLU-and-Softmax-Activation-Functions}{\url{https://github.com//Kulbear//deep-learning-nano-foundation//wiki}}.
             %https://github.com/Kulbear/deep-learning-nano-foundation/wiki/ReLU-and-Softmax-Activation-Functions
+    
+            \bibitem{14}
+            \href{http://www.szkolazpasja.pl//rastrowa}{\url{http://www.szkolazpasja.pl//rastrowa}}.
+            
+            \bibitem{15}  \href{https://leonardoaraujosantos.gitbooks.io//artificial-inteligence//content//dropout_layer.html}{\url{https://leonardoaraujosantos.gitbooks.io//artificial-inteligence//content//dropout_layer.html}}.
+                
+            \bibitem{16}    
+            \href{https://www.tiobe.com//tiobe-index}{\url{https://www.tiobe.com//tiobe-index}}.
 
-            \item \href{http://www.szkolazpasja.pl//rastrowa}{\url{http://www.szkolazpasja.pl//rastrowa}}
-	   \end{itemize}
-	   \end{spacing}
-	   
-	   
-	   
-	   
-
+ \end{thebibliography}
 	        
 	        
 \end{document}
