@@ -1127,15 +1127,52 @@
 
         \subsection{Klasyfikacja odczytanych liter}
 	        \hspace{\spacingIndent} Algorytmy klasy \textit{ReadLetterClassifier} odczytują przygotowany     przez klasę \textit{DetectLetter} obraz zawierający znak, następnie obraz ten zostaje analizowany przez system OCR Tesseract oraz konwolucyjną sieć       neuronową. Wybranie najbardziej prawdopodobnej litery odbywa się przez      porównanie wyniku zwróconego przez system OCR i trzech największych         prawdopodobieństw zwróconych przez sieć. Tak odczytany cały wykryty         tekst znajdujący się na stronie zostaje zapisany do pliku tekstowego.
+	        \begin{figure}[!ht]  
+			        \begin{center}
+				        \includegraphics[width = 16.5cm, frame] {image//exampleImage//r_001.png} 
+			        \end{center}
+			        \caption
+        			    [Przykładowy obraz z którego rozpoznawany jest tekst.]  
+        			    {Przykładowy obraz z którego rozpoznawany jest tekst.}  
+        			    \label{fig:exImgRead01}
+	        \end{figure}\\
+	        Tekst rozpoznany na podstawie Rysunku \ref{fig:exImgRead01}: 
+	        " ł vrfrZżrvrwrjFiliumDeiuni—genitumEtexPatrenatum        u g i  DP  ".
+	        \begin{figure}[!ht]  
+			        \begin{center}
+				        \includegraphics[width = 16.5cm, frame] {image//exampleImage//r_002.png} 
+			        \end{center}
+			        \caption
+        			    [Przykładowy obraz z którego rozpoznawany jest tekst.]  
+        			    {Przykładowy obraz z którego rozpoznawany jest tekst.}  
+        			    \label{fig:exImgRead02}
+	        \end{figure}\\
+	        Tekst rozpoznany na podstawie Rysunku \ref{fig:exImgRead02}: 
+	        " l v”Ietinv1«Ivetin vi Vsira~bii—il IA  ;rrvrrliumEtinunumDominumJesumChristun1L=L4L›L  i   FEiii›—wII  numDo~~minumA ii „Il mJe s lllC ri FSii ".
+	        \begin{figure}[!ht]  
+			        \begin{center}
+				        \includegraphics[width = 16.5cm, frame] {image//exampleImage//r_003.png} 
+			        \end{center}
+			        \caption
+        			    [Przykładowy obraz z którego rozpoznawany jest tekst.]  
+        			    {Przykładowy obraz z którego rozpoznawany jest tekst.}  
+        			    \label{fig:exImgRead03}
+	        \end{figure}\\
+	        Tekst rozpoznany na podstawie Rysunku \ref{fig:exImgRead03}: 
+	        " Wktó reiJe ZusChIV st s ó FStW O  kIV Wa   ".
+	        \begin{figure}[!ht]  
+			        \begin{center}
+				        \includegraphics[width = 16.5cm, frame] {image//exampleImage//r_004.png} 
+			        \end{center}
+			        \caption
+        			    [Przykładowy obraz z którego rozpoznawany jest tekst.]  
+        			    {Przykładowy obraz z którego rozpoznawany jest tekst.}  
+        			    \label{fig:exImgRead04}
+	        \end{figure}\\
+	        Tekst rozpoznany na podstawie Rysunku \ref{fig:exImgRead04}: 
+	        "    TĘrI teIo   iii F5rSCI LA   CU la De   ~hmdeDeFJ   lu  „ll»de      i lLŚ     ".
 	        
-	            Przykładowy odczytany tekst: \textbf{Nie wiem czy jednak umieszczać ten przykładowy tekst :)}
-	        
-	         "lLH HŁ»» gzFłI—I„=iChwałaTobiesłowoBożechwałaTobiesłowoBożeIłłełt»\\
-	         ————~„AA    BtChnenwCue    wałaTobiesłowoBoże 222121ałaTobiesłowoBoże\\
-	         ›ie   S5łlłowoBożechwałaTobie›”J«eui;IW7~LA   FLFA   CI\\   W„chwałaTobie„ł3i  hia      lłłaTobie„u    i„«——IIsłowoBo\\ EIOWOAj0Boze „uiB  n„   l›    H;1N ki\\ DJllAllelujaallelu—jazJJA;JJtl   AllJ      elui       „›\\ 
-	         Iall lelujaA  thJ     j FJr      I—"  
-	        
-	        
+	        Na podstawie powyższych przykładów można zauważyć, że rozpoznawanie tekstu jest zagadnieniem nietrywialnym, złożonym. W wychwyconych tekstach można zidentyfikować poszczególne wyrazy i frazy (teksty rozpoznany na podstawie Rysunków \ref{fig:exImgRead01}, \ref{fig:exImgRead02}, \ref{fig:exImgRead03}). Idealne przykłady detekcji linii w których znajduje się tekst (Rysunek \ref{fig:exImgRead03}) niekoniecznie dają idealne wyniki, jest to spowodowane niedoskonałym algorytmem klasyfikującym poprawnie wycięte z obrazu litery. Zaś jeśli rozpoznana linia zwierająca tekst zawiera dodatkowo nie wycięte znaki muzyczne to mają one wpływ na dalsze przetwarzanie obrazu (wycięcie liter), a w efekcie na rozpoznany tekst (tekst rozpoznany na podstawie Rysunku \ref{fig:exImgRead04}).
 	        
         \subsection{Graficzny interfejs użytkownika}
 	        \begin{figure}[h!]
